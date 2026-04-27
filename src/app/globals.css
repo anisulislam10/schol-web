@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  /* GCS Rawalpindi Palette */
-  --primary: #061727; /* Dark Navy */
-  --secondary: #17a2b8; /* Cyan / Teal */
-  --accent: #00B9FF; /* Bright Cyan */
-  --bg-light: #f8f9fa;
+  /* Official Punjab Govt Palette */
+  --primary: #01411c; /* Official Green */
+  --secondary: #061727; /* Dark Navy */
+  --accent: #ffcc00; /* Gold */
+  --bg-light: #f4f7f5;
   --bg-white: #ffffff;
   --text-primary: #061727;
   --text-secondary: #5e6d7a;
@@ -20,46 +20,46 @@
 }
 
 /* Institutional Design Tokens */
-.shadow-institutional {
+@utility shadow-institutional {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
-.title-underline {
+@utility title-underline {
   @apply relative pb-4 mb-8 inline-block;
-}
-.title-underline::after {
-  content: '';
-  @apply absolute bottom-0 left-0 w-12 h-1 bg-[#17a2b8];
+  &::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-12 h-1 bg-[#01411c];
+  }
 }
 
 /* GCS Ticker */
-.gcs-ticker-label {
-  @apply bg-[#17a2b8] text-white px-6 h-full flex items-center font-bold text-sm skeleton-wave;
+@utility gcs-ticker-label {
+  @apply bg-[#01411c] text-white px-6 h-full flex items-center font-bold text-sm skeleton-wave;
 }
 
 /* Stat Cards */
-.stat-card {
+@utility stat-card {
   @apply p-8 text-center transition-all duration-300 hover:-translate-y-2;
 }
-.stat-card-teal { @apply bg-[#17a2b8] text-white; }
-.stat-card-white { @apply bg-white text-[#061727] shadow-institutional; }
+@utility stat-card-teal { @apply bg-[#01411c] text-white; }
+@utility stat-card-white { @apply bg-white text-[#061727] shadow-institutional; }
 
 /* Program Ribbons */
-.ribbon {
-  @apply absolute top-4 left-4 bg-[#17a2b8] text-white text-[10px] font-black uppercase px-2 py-1 rounded-sm z-10;
+@utility ribbon {
+  @apply absolute top-4 left-4 bg-[#ffcc00] text-[#01411c] text-[10px] font-black uppercase px-2 py-1 rounded-sm z-10;
 }
 
 /* Custom Tabs */
-.tab-active {
+@utility tab-active {
   @apply bg-[#061727] text-white;
 }
-.tab-inactive {
+@utility tab-inactive {
   @apply bg-slate-100 text-slate-500 hover:bg-slate-200;
 }
 
 /* Footer Branded Block */
-.footer-brand-box {
-  @apply bg-[#17a2b8] p-8 text-white rounded-lg -mt-20 relative z-10 shadow-xl;
+@utility footer-brand-box {
+  @apply bg-[#01411c] p-8 text-white rounded-lg -mt-20 relative z-10 shadow-xl;
 }
 
 /* Animations */
@@ -69,4 +69,26 @@
 }
 .animate-ticker {
   animation: ticker-scroll 30s linear infinite;
+}
+
+@utility skeleton-wave {
+  @apply relative overflow-hidden;
+  &::after {
+    content: "";
+    @apply absolute inset-0 -translate-x-full;
+    background-image: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0,
+      rgba(255, 255, 255, 0.1) 20%,
+      rgba(255, 255, 255, 0.4) 60%,
+      rgba(255, 255, 255, 0)
+    );
+    animation: shimmer 2.5s infinite;
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
 }

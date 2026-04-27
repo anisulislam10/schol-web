@@ -17,14 +17,19 @@ const AdminSchema = new Schema<IAdmin>(
   { timestamps: true }
 );
 
-AdminSchema.pre('save', async function (next) {
-  if (!this.isModified('password')) return next();
-  this.password = await bcrypt.hash(this.password, 12);
-  next();
+AdminSchema.pre('save', async function () {
+  if (this.isModified('password')) {
+    this.password = await bcrypt.hash(this.password, 12);
+  }
 });
 
 AdminSchema.methods.comparePassword = async function (candidatePassword: string): Promise<boolean> {
   return bcrypt.compare(candidatePassword, this.password);
 };
 
-export default mongoose.models.Admin || mongoose.model<IAdmin>('Admin', AdminSchema);
+// Clear the model from cache to avoid "next is not a function" errors during hot-reload
+if (mongoose.models.Admin) {
+  delete mongoose.models.Admin;
+}
+
+export default mongoose.model<IAdmin>('Admin', AdminSchema);

@@ -1,0 +1,34 @@
+import type { NextAuthConfig } from 'next-auth';
+
+export const authConfig = {
+  pages: {
+    signIn: '/admin/login',
+  },
+  session: { strategy: 'jwt' },
+  callbacks: {
+    async authorized({ auth, request: { nextUrl } }) {
+      const isLoggedIn = !!auth?.user;
+      const isAdminPath = nextUrl.pathname.startsWith('/admin');
+      const isLoginPage = nextUrl.pathname === '/admin/login';
+
+      if (isAdminPath && !isLoginPage) {
+        if (isLoggedIn) return true;
+        return false; // Redirect to login
+      } else if (isLoginPage && isLoggedIn) {
+        return Response.redirect(new URL('/admin', nextUrl));
+      }
+      return true;
+    },
+    async jwt({ token, user }) {
+      if (user) token.id = user.id;
+      return token;
+    },
+    async session({ session, token }) {
+      if (token && session.user) {
+        session.user.id = token.id as string;
+      }
+      return session;
+    },
+  },
+  providers: [], // Empty for now, will be added in auth.ts
+} satisfies NextAuthConfig;

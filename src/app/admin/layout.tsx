@@ -25,6 +25,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     { label: 'Notices', icon: Bell, href: '/admin/notices' },
     { label: 'Features', icon: Star, href: '/admin/features' },
     { label: 'Gallery', icon: ImageIcon, href: '/admin/gallery' },
+    { label: 'Pages', icon: FileText, href: '/admin/pages' },
     { label: 'Settings', icon: Settings, href: '/admin/settings' },
   ];
 
@@ -33,12 +34,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       {/* Sidebar */}
       <aside style={{ width: '280px', background: '#0f2347', color: '#fff', padding: '30px', position: 'fixed', height: '100vh', overflowY: 'auto' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '40px' }}>
-          <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: 'linear-gradient(135deg, #e8a020, #f5b942)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: '#ffcc00', color: '#002d56', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <GraduationCap size={22} />
           </div>
           <div>
-            <div style={{ fontWeight: 800, fontSize: '1rem' }}>Al-Noor Admin</div>
-            <div style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase' }}>Management Console</div>
+            <div style={{ fontWeight: 800, fontSize: '1rem' }}>GGC Admin</div>
+            <div style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase' }}>Satellite Town</div>
           </div>
         </div>
 

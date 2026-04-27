@@ -1,75 +1,111 @@
 import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
 import Admin from '@/lib/models/Admin';
-import Teacher from '@/lib/models/Teacher';
 import Feature from '@/lib/models/Feature';
+import Teacher from '@/lib/models/Teacher';
 import Notice from '@/lib/models/Notice';
-import Settings from '@/lib/models/Settings';
+import Admission from '@/lib/models/Admission';
+import Download from '@/lib/models/Download';
+import Popup from '@/lib/models/Popup';
+import Department from '@/lib/models/Department';
+import Program from '@/lib/models/Program';
+import DynamicPage from '@/lib/models/DynamicPage';
 
 export async function POST() {
-  await dbConnect();
+  try {
+    await dbConnect();
 
-  // Seed Admin
-  const adminEmail = process.env.ADMIN_EMAIL || 'admin@school.com';
-  const adminPassword = process.env.ADMIN_PASSWORD || 'Admin@1234';
-  const existingAdmin = await Admin.findOne({ email: adminEmail });
-  if (!existingAdmin) {
-    await Admin.create({ email: adminEmail, password: adminPassword, name: 'School Admin' });
-  }
+    // Clear existing
+    await Promise.all([
+      Admin.deleteMany({}),
+      Feature.deleteMany({}),
+      Teacher.deleteMany({}),
+      Notice.deleteMany({}),
+      Admission.deleteMany({}),
+      Download.deleteMany({}),
+      Popup.deleteMany({}),
+      Department.deleteMany({}),
+      Program.deleteMany({}),
+      DynamicPage.deleteMany({})
+    ]);
 
-  // Seed Settings
-  const existingSettings = await Settings.findOne();
-  if (!existingSettings) {
-    await Settings.create({
-      schoolName: 'Al-Noor Public School',
-      tagline: 'Nurturing Minds, Building Futures',
-      address: 'Main GT Road, Peshawar, KPK, Pakistan',
-      phone: '+92 91 111 2222',
-      email: 'info@alnoorschool.edu.pk',
-      established: '1995',
-      principalName: 'Mr. Ahmad Khan',
-      totalStudents: 1200,
-      totalTeachers: 65,
-      passRate: 98,
+    // 0. Admin
+    await Admin.create({
+      email: 'admin@ggc.edu',
+      password: 'admin123',
+      name: 'Super Admin'
     });
-  }
 
-  // Seed Features
-  const featuresCount = await Feature.countDocuments();
-  if (featuresCount === 0) {
-    await Feature.insertMany([
-      { title: 'Smart Classrooms', description: 'Equipped with modern projectors and digital boards for interactive learning.', icon: 'Monitor', order: 1 },
-      { title: 'Science Labs', description: 'State-of-the-art labs for Physics, Chemistry, and Biology experiments.', icon: 'FlaskConical', order: 2 },
-      { title: 'Library & Resource Center', description: 'Over 10,000 books, digital resources, and a quiet study environment.', icon: 'BookOpen', order: 3 },
-      { title: 'Sports Facilities', description: 'Cricket ground, basketball court, and indoor sports hall for all students.', icon: 'Trophy', order: 4 },
-      { title: 'Computer Lab', description: 'High-speed internet and modern PCs for digital literacy and programming.', icon: 'Laptop', order: 5 },
-      { title: 'Safe Environment', description: 'CCTV surveillance, trained staff, and a secure campus for every student.', icon: 'Shield', order: 6 },
+    // 1. Departments
+    const depts = await Department.create([
+      { name: 'Computer Science', description: 'Exploring the future of technology and software development.', headName: 'Dr. Ahmad Khan', order: 1 },
+      { name: 'Physics', description: 'Discovering the fundamental laws of the universe.', headName: 'Prof. Sarah Malik', order: 2 },
+      { name: 'English Literature', description: 'Critically analyzing classic and contemporary works.', headName: 'Dr. Jane Doe', order: 3 },
     ]);
-  }
 
-  // Seed Teachers
-  const teachersCount = await Teacher.countDocuments();
-  if (teachersCount === 0) {
-    await Teacher.insertMany([
-      { name: 'Dr. Fatima Malik', role: 'Head of Science', subject: 'Physics', bio: 'PhD in Physics from University of Peshawar with 15 years of teaching excellence.', qualifications: ['PhD Physics', 'MSc Physics', 'BSc Hons'], experience: 15, classes: 'Class 9–FSC', order: 1 },
-      { name: 'Mr. Tariq Hassan', role: 'Mathematics Teacher', subject: 'Mathematics', bio: 'Specialist in advanced mathematics, known for making complex concepts simple and engaging.', qualifications: ['MSc Mathematics', 'BSc Hons'], experience: 10, classes: 'Class 6–10', order: 2 },
-      { name: 'Ms. Ayesha Noor', role: 'English Language Teacher', subject: 'English', bio: 'MA in English Literature with a passion for creative writing and communication skills.', qualifications: ['MA English', 'BA Hons'], experience: 8, classes: 'Class 1–8', order: 3 },
-      { name: 'Mr. Imran Baig', role: 'Computer Science Teacher', subject: 'Computer Science', bio: 'Software engineer turned educator, bringing real-world tech experience to the classroom.', qualifications: ['MS Computer Science', 'BSc Software Engineering'], experience: 6, classes: 'Class 9–FSC', order: 4 },
-      { name: 'Ms. Sana Riaz', role: 'Biology Teacher', subject: 'Biology', bio: 'Dedicated biology educator who inspires students with a love for the natural world.', qualifications: ['MSc Biology', 'BSc Hons'], experience: 9, classes: 'FSC Pre-Med', order: 5 },
-      { name: 'Mr. Khalid Rehman', role: 'Urdu & Islamiat Teacher', subject: 'Urdu / Islamiat', bio: 'Veteran educator with a deep commitment to language preservation and Islamic studies.', qualifications: ['MA Urdu', 'MA Islamiat'], experience: 18, classes: 'Class 1–10', order: 6 },
+    // 2. Programs
+    await Program.create([
+      { title: 'BS Computer Science', department: 'Computer Science', duration: '4 Years', eligibility: 'Inter / ICS / A-Level (Maths)', order: 1 },
+      { title: 'BS Information Technology', department: 'Computer Science', duration: '4 Years', eligibility: 'Inter / ICS / A-Level', order: 2 },
+      { title: 'BS Physics', department: 'Physics', duration: '4 Years', eligibility: 'F.Sc Pre-Engineering', order: 3 },
     ]);
-  }
 
-  // Seed Notices
-  const noticesCount = await Notice.countDocuments();
-  if (noticesCount === 0) {
-    await Notice.insertMany([
-      { title: 'Annual Examination Schedule 2024', content: 'Annual examinations will commence from December 1st, 2024. All students must bring their admission cards.', priority: 'urgent', date: new Date() },
-      { title: 'Eid ul Fitr Holiday Notice', content: 'The school will remain closed on Eid ul Fitr holidays (3 days). Classes resume as normal after the break.', priority: 'normal', date: new Date(Date.now() - 86400000 * 2) },
-      { title: 'Fee Submission Deadline', content: 'Monthly fee must be submitted by the 10th of every month. Late fees will incur a penalty of PKR 200.', priority: 'important', date: new Date(Date.now() - 86400000 * 3) },
-      { title: 'Annual Sports Day Registration', content: 'Students wishing to participate in the Annual Sports Day must register with their class teacher by Friday.', priority: 'normal', date: new Date(Date.now() - 86400000 * 5) },
+    // 3. Dynamic Pages
+    await DynamicPage.create([
+      { slug: 'fee-structure', title: 'Fee Structure', content: '<h2>Undergraduate Fee</h2><p>BS Programs: PKR 25,000 per semester.</p><h2>Graduate Fee</h2><p>MS Programs: PKR 45,000 per semester.</p>' },
+      { slug: 'admission-criteria', title: 'Admission Criteria', content: '<ul><li>Minimum 60% marks in Intermediate.</li><li>Passing entry test is mandatory.</li><li>Age limit: 22 years for undergraduate.</li></ul>' },
+      { slug: 'admission-process', title: 'Admission Process', content: '<h2>Step-by-Step Guide</h2><ol><li>Obtain Prospectus.</li><li>Fill Online Form.</li><li>Submit Documents.</li><li>Appear for Interview.</li></ol>' },
+      { slug: 'degrees', title: 'Degrees Offered', content: '<p>GGC offers a wide range of BS (4-Year) and MS (2-Year) degrees across various departments.</p>' },
+      { slug: 'timetable', title: 'Academic Time Table', content: '<p>Download the latest departmental time table for Fall 2024 here.</p>' },
+      { slug: 'datesheets', title: 'Date Sheets', content: '<p>Examination schedules and date sheets will be published here 2 weeks before exams.</p>' },
+      { slug: 'results', title: 'Examination Results', content: '<p>Check your semester and annual results by entering your Roll Number below.</p>' },
+      { slug: 'student-life', title: 'Student Life', content: '<p>Discover the vibrant campus life at GGC, including clubs, societies, and sports.</p>' },
+      { slug: 'enrollment', title: 'Current Enrollment', content: '<p>Statistical overview of our current student body across all departments.</p>' },
+      { slug: 'about-us', title: 'About GGC', content: '<p>Founded with a mission to provide quality education to the youth of Rawalpindi.</p>' },
+      { slug: 'contact-us', title: 'Contact Information', content: '<p>Visit us at Satellite Town, Rawalpindi or call us at +92 (051) 1234567.</p>' },
+      { slug: 'committees', title: 'Institute Committees', content: '<p>List of academic and administrative committees governing GGC.</p>' },
+      { slug: 'leadership', title: 'Institute Leadership', content: '<p>Profiles of the Principal, Vice Principal, and HODs.</p>' },
+      { slug: 'staff', title: 'Non-Teaching Staff', content: '<p>Management and supporting staff responsible for college operations.</p>' },
+      { slug: 'facilities', title: 'Campus Facilities', content: '<p>Library, Labs, Sports Grounds, and IT Center details.</p>' },
+      { slug: 'vacancies', title: 'Job Opportunities', content: '<p>Latest job openings and recruitment notices at GGC.</p>' },
     ]);
-  }
 
-  return NextResponse.json({ message: 'Database seeded successfully!' });
+    // 4. Features (Programs on home)
+    await Feature.create([
+      { title: 'Quality Education', description: 'Leading academic programs with international standards.', order: 1 },
+      { title: 'Expert Faculty', description: 'Experienced scholars and industry professionals.', order: 2 },
+    ]);
+
+    // 5. Teachers
+    await Teacher.create([
+      { name: 'Prof. Muhammad Usman', role: 'Principal', subject: 'Administration', bio: 'Leading the institution with vision.', experience: 25, qualifications: ['Ph.D'], order: 1 },
+      { name: 'Dr. Amina Khalid', role: 'Associate Professor', subject: 'Computer Science', bio: 'Expert in AI and Data Science.', experience: 12, qualifications: ['Ph.D CS'], order: 2 },
+    ]);
+
+    // 6. Notices
+    await Notice.create([
+      { title: 'Summer Vacations Announcement', content: 'College will remain closed from June 15th to August 15th.', date: new Date() },
+      { title: 'Admission Fall 2024 Open', content: 'Applications are now being accepted for all undergraduate programs.', date: new Date() },
+    ]);
+
+    // 7. Admissions (Posters)
+    await Admission.create([
+      { title: 'Fall Admissions 2024', description: 'Last date to apply is August 30th.', poster: 'https://images.unsplash.com/photo-1523050853064-5a1099684364?auto=format&fit=crop&q=80&w=800', order: 1 },
+    ]);
+
+    // 8. Downloads
+    await Download.create([
+      { title: 'Academic Calendar 2024', fileUrl: '#', fileType: 'pdf', order: 1 },
+      { title: 'Admission Form', fileUrl: '#', fileType: 'pdf', order: 2 },
+    ]);
+
+    // 9. Popup
+    await Popup.create([
+      { title: 'Urgent: Registration Deadline', description: 'The deadline for semester registration has been extended to Monday.', image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&q=80&w=600', isActive: true },
+    ]);
+
+    return NextResponse.json({ message: 'Database seeded successfully with dynamic content!' });
+  } catch (error: any) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
 }
