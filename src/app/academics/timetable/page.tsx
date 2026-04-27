@@ -1,2 +1,3 @@
-import GenericInfoPage from '@/components/public/GenericInfoPage';
-export default function Page() { return <GenericInfoPage params={{ slug: 'timetable' }} />; }
+export const runtime = 'nodejs';
+import { renderDynamicPage } from '@/lib/renderDynamicPage';
+export default function Page() { return renderDynamicPage('timetable'); }

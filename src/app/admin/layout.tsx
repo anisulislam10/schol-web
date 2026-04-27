@@ -12,6 +12,7 @@ import {
   GraduationCap, 
   Star, 
   Image as ImageIcon,
+  FileText,
   ExternalLink
 } from 'lucide-react';
 

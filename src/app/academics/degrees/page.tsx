@@ -1,5 +1,3 @@
-import GenericInfoPage from '@/components/public/GenericInfoPage';
-
-export default function DegreesPage() {
-  return <GenericInfoPage params={{ slug: 'degrees' }} />;
-}
+export const runtime = 'nodejs';
+import { renderDynamicPage } from '@/lib/renderDynamicPage';
+export default function Page() { return renderDynamicPage('degrees'); }
