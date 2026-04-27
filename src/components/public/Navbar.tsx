@@ -52,7 +52,7 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <Link href="/" className="flex items-center gap-4 group">
              <div className="w-16 h-16 relative flex items-center justify-center p-1 bg-white border border-slate-100 rounded-sm">
-                <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" onError={(e) => e.currentTarget.src = 'https://gcsrawalpindi.edu.pk/wp-content/uploads/2021/06/cropped-GCS-Logo-1.png'} />
+                <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" />
              </div>
              <div className="flex flex-col">
                 <div className="text-[#061727] font-black text-xl leading-none tracking-tight">GOVT. GRADUATE COLLEGE</div>
