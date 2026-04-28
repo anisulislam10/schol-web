@@ -7,14 +7,38 @@ export default function AddGalleryModal({ onAdd }: { onAdd: (formData: FormData)
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const [imageUrl, setImageUrl] = useState('');
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (!imageUrl) {
+      alert("Please upload an image first.");
+      return;
+    }
     setLoading(true);
     const formData = new FormData(e.currentTarget);
+    formData.set('imageUrl', imageUrl);
     await onAdd(formData);
     setLoading(false);
     setIsOpen(false);
+    setImageUrl('');
   }
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const formData = new FormData();
+    formData.append('file', file);
+    try {
+      const res = await fetch('/api/upload', { method: 'POST', body: formData });
+      const data = await res.json();
+      if (data.url) {
+        setImageUrl(data.url);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <>
@@ -37,14 +61,15 @@ export default function AddGalleryModal({ onAdd }: { onAdd: (formData: FormData)
             
             <form onSubmit={handleSubmit} className="p-8 space-y-6">
               <div>
-                <label className="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Image URL</label>
+                <label className="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Upload Image</label>
                 <input 
-                  name="imageUrl" 
-                  type="url" 
-                  required 
-                  placeholder="https://images.unsplash.com/..."
+                  type="file" 
+                  accept="image/*"
+                  onChange={handleFileUpload}
+                  required={!imageUrl}
                   className="w-full px-4 py-3 rounded-sm border border-slate-200 focus:border-[#ffcc00] focus:ring-0 outline-none transition-all text-sm font-medium"
                 />
+                {imageUrl && <div className="mt-2 text-xs text-[#17a2b8]">Image uploaded successfully!</div>}
               </div>
               <div>
                 <label className="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Caption / Title</label>

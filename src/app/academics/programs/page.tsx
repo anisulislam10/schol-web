@@ -8,7 +8,7 @@ export const revalidate = 0;
 
 async function getPrograms() {
   await dbConnect();
-  const programs = await Program.find({ isActive: true }).sort({ department: 1, order: 1 }).lean();
+  const programs = await Program.find({ isActive: true }).sort({ order: 1 }).lean();
   return JSON.parse(JSON.stringify(programs));
 }
 
@@ -27,43 +27,32 @@ export default async function ProgramsPage() {
       </section>
 
       <section className="py-24 px-6 max-w-[1400px] mx-auto">
-        <div className="bg-white rounded-sm shadow-2xl overflow-hidden border border-slate-100">
-          <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
-              <thead>
-                <tr className="bg-[#002d56] text-white uppercase text-[11px] font-black tracking-[0.2em]">
-                  <th className="px-10 py-6 border-r border-white/10">Sr #</th>
-                  <th className="px-10 py-6 border-r border-white/10">Program Title</th>
-                  <th className="px-10 py-6 border-r border-white/10">Department</th>
-                  <th className="px-10 py-6 border-r border-white/10">Duration</th>
-                  <th className="px-10 py-6">Eligibility</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100">
-                {programs.map((prog: any, i: number) => (
-                  <tr key={prog._id} className="hover:bg-slate-50 transition-all">
-                    <td className="px-10 py-8 text-slate-400 font-bold text-sm border-r border-slate-50">{i + 1}</td>
-                    <td className="px-10 py-8 border-r border-slate-50">
-                       <div className="text-lg font-black text-[#002d56] uppercase tracking-tighter">{prog.title}</div>
-                    </td>
-                    <td className="px-10 py-8 border-r border-slate-50">
-                       <span className="text-[10px] font-black uppercase tracking-widest text-[#17a2b8]">{prog.department}</span>
-                    </td>
-                    <td className="px-10 py-8 border-r border-slate-50">
-                       <span className="text-slate-500 font-bold text-sm">{prog.duration}</span>
-                    </td>
-                    <td className="px-10 py-8">
-                       <p className="text-slate-500 text-sm font-medium line-clamp-2">{prog.eligibility}</p>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {programs.map((prog: any) => (
+            <div key={prog._id} className="bg-white rounded-sm shadow-xl border border-slate-100 overflow-hidden group hover:border-[#ffcc00] transition-all">
+              <div className="h-64 bg-slate-100 relative overflow-hidden">
+                {prog.image ? (
+                  <img src={prog.image} alt={prog.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-slate-300 font-bold uppercase tracking-widest text-xs">No Image</div>
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#002d56]/80 via-transparent to-transparent opacity-60" />
+              </div>
+              <div className="p-8">
+                <h3 className="text-2xl font-black text-[#002d56] uppercase tracking-tighter mb-4 leading-tight group-hover:text-[#17a2b8] transition-colors">{prog.title}</h3>
+                <p className="text-slate-500 font-medium leading-relaxed line-clamp-3 mb-6">
+                  {prog.shortDesc || prog.description || 'No description available.'}
+                </p>
+                <button className="text-[#002d56] font-black text-[10px] uppercase tracking-widest border-b-2 border-[#ffcc00] pb-1 hover:border-[#002d56] transition-all">
+                   Learn More
+                </button>
+              </div>
+            </div>
+          ))}
+
           {programs.length === 0 && (
-            <div className="text-center py-32 bg-slate-50 border-t border-slate-100">
-              <p className="text-slate-400 text-xl font-medium uppercase tracking-widest">No degree programs found.</p>
+            <div className="col-span-full py-32 text-center border-2 border-dashed border-slate-200 rounded-sm bg-white">
+              <p className="text-slate-400 font-bold uppercase tracking-widest">No programs found.</p>
             </div>
           )}
         </div>

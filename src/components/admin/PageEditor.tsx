@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { Save, ArrowLeft, Loader2, Globe, FileText } from 'lucide-react';
 import Link from 'next/link';
 
-export default function PageEditor({ initialData, mode = 'create' }: { initialData?: any, mode?: 'create' | 'edit' }) {
+export default function PageEditor({ initialData, mode = 'create', lockSlug = false }: { initialData?: any, mode?: 'create' | 'edit', lockSlug?: boolean }) {
   const [formData, setFormData] = useState({
     title: initialData?.title || '',
     slug: initialData?.slug || '',
@@ -74,7 +74,8 @@ export default function PageEditor({ initialData, mode = 'create' }: { initialDa
                   required
                   value={formData.slug}
                   onChange={e => setFormData({...formData, slug: e.target.value.toLowerCase().replace(/ /g, '-')})}
-                  className="w-full pl-12 pr-6 py-4 bg-slate-50 border border-slate-100 rounded-sm focus:border-[#ffcc00] outline-none font-bold text-[#17a2b8] transition-all"
+                  disabled={lockSlug}
+                  className={`w-full pl-12 pr-6 py-4 bg-slate-50 border border-slate-100 rounded-sm focus:border-[#ffcc00] outline-none font-bold text-[#17a2b8] transition-all ${lockSlug ? 'opacity-60 cursor-not-allowed' : ''}`}
                   placeholder="fee-structure"
                 />
               </div>

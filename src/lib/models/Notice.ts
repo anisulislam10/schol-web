@@ -5,6 +5,7 @@ export interface INotice extends Document {
   content: string;
   date: Date;
   priority: 'normal' | 'important' | 'urgent';
+  attachment?: string;
   isActive: boolean;
   createdAt: Date;
 }
@@ -15,6 +16,7 @@ const NoticeSchema = new Schema<INotice>(
     content: { type: String, required: true },
     date: { type: Date, default: Date.now },
     priority: { type: String, enum: ['normal', 'important', 'urgent'], default: 'normal' },
+    attachment: { type: String, default: '' },
     isActive: { type: Boolean, default: true },
   },
   { timestamps: true }

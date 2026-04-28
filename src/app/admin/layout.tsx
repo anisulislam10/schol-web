@@ -22,11 +22,14 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   const menuItems = [
     { label: 'Dashboard', icon: LayoutDashboard, href: '/admin' },
+    { label: 'Departments', icon: GraduationCap, href: '/admin/departments' },
+    { label: 'Programs', icon: FileText, href: '/admin/programs' },
     { label: 'Teachers', icon: Users, href: '/admin/teachers' },
     { label: 'Notices', icon: Bell, href: '/admin/notices' },
+    { label: 'Fee Structure', icon: FileText, href: '/admin/fees' },
+    { label: 'Downloads', icon: FileText, href: '/admin/downloads' },
     { label: 'Features', icon: Star, href: '/admin/features' },
     { label: 'Gallery', icon: ImageIcon, href: '/admin/gallery' },
-    { label: 'Pages', icon: FileText, href: '/admin/pages' },
     { label: 'Settings', icon: Settings, href: '/admin/settings' },
   ];
 

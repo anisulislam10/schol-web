@@ -31,7 +31,7 @@ export default async function AdmissionsPage() {
         </div>
         <div className="relative z-10 max-w-4xl px-6 text-white">
           <h1 className="text-5xl md:text-7xl font-black mb-6 uppercase tracking-tighter">Admissions</h1>
-          <p className="text-xl text-white/80 font-medium tracking-wide uppercase">Join the Lausanne Family</p>
+          <p className="text-xl text-white/80 font-medium tracking-wide uppercase">Join the GGC Family</p>
         </div>
       </section>
 

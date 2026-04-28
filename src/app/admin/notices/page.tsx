@@ -9,6 +9,7 @@ interface Notice {
   content: string;
   date: string;
   priority: 'normal' | 'important' | 'urgent';
+  attachment?: string;
   isActive: boolean;
 }
 
@@ -43,6 +44,22 @@ export default function NoticesAdminPage() {
       });
       if (res.ok) { setEditing(null); fetchNotices(); }
     } catch (err) { console.error(err); } finally { setSaving(false); }
+  };
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const formData = new FormData();
+    formData.append('file', file);
+    try {
+      const res = await fetch('/api/upload', { method: 'POST', body: formData });
+      const data = await res.json();
+      if (data.url) {
+        setEditing(prev => prev ? { ...prev, attachment: data.url } : null);
+      }
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const handleDelete = async (id: string) => {
@@ -126,6 +143,11 @@ export default function NoticesAdminPage() {
               <div>
                 <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#1a3a6e', marginBottom: '8px' }}>Notice Details</label>
                 <textarea rows={6} required value={editing.content || ''} onChange={e => setEditing({...editing, content: e.target.value})} style={{ width: '100%', padding: '14px', borderRadius: '12px', border: '1px solid #e2e8f0', outline: 'none', resize: 'none' }} placeholder="Write the full notice content here..."></textarea>
+              </div>
+              <div>
+                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#1a3a6e', marginBottom: '8px' }}>Attach PDF File</label>
+                <input type="file" accept=".pdf" onChange={handleFileUpload} style={{ width: '100%', padding: '14px', borderRadius: '12px', border: '1px solid #e2e8f0', outline: 'none' }} />
+                {editing.attachment && <div style={{ marginTop: '8px', fontSize: '0.8rem', color: '#1a3a6e' }}>Attached: {editing.attachment}</div>}
               </div>
               <button disabled={saving} type="submit" style={{ width: '100%', background: '#1a3a6e', color: '#fff', padding: '18px', borderRadius: '12px', fontWeight: 700, border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', marginTop: '10px' }}>
                 {saving ? <Loader2 className="animate-spin" size={20} /> : <Save size={20} />} {editing._id ? 'Save Changes' : 'Publish Notice'}

@@ -5,11 +5,11 @@ import { Mail, Phone, MapPin } from 'lucide-react';
 
 export default function Footer() {
   const footerLinks = [
-    { title: 'GIVING', links: ['Give Now', 'Ways to Give', 'Lausanne Annual Fund', 'Endowment', 'Planned Giving'] },
+    { title: 'GIVING', links: ['Give Now', 'Ways to Give', 'College Fund', 'Endowment', 'Planned Giving'] },
     { title: 'VISIT', links: ['Plan a Visit', 'Campus Map', 'Directions'] },
     { title: 'ADMISSIONS', links: ['Apply Now', 'Request Info', 'Tuition & Financial Aid'] },
     { title: 'ALUMNI', links: ['Alumni Weekend', 'Class Notes', 'Transcript Request'] },
-    { title: 'JOBS', links: ['Career Opportunities', 'Working at Lausanne'] },
+    { title: 'JOBS', links: ['Career Opportunities', 'Working at GGC'] },
     { title: 'CONTACT', links: ['Directory', 'Faculty & Staff', 'Office of Admissions'] },
   ];
 
@@ -31,14 +31,14 @@ export default function Footer() {
                    <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="font-black text-3xl leading-none tracking-tighter uppercase">LAUSANNE</span>
-                  <span className="text-[11px] font-bold tracking-[0.3em] opacity-60 uppercase mt-1">Collegiate School</span>
+                  <span className="font-black text-xl leading-none tracking-tight uppercase">GOVT. GRADUATE COLLEGE</span>
+                  <span className="text-[11px] font-bold tracking-[0.2em] opacity-60 uppercase mt-1">Satellite Town, Rawalpindi</span>
                 </div>
              </Link>
              <p className="text-white/50 text-sm leading-relaxed mb-10 max-w-xs font-medium">
-                1381 West Massey Road <br />
-                Memphis, TN 38120 <br />
-                901.474.1000
+                Satellite Town, Rawalpindi <br />
+                Punjab, Pakistan <br />
+                +92 (051) 1234567
              </p>
              <div className="flex gap-4">
                 {socialIcons.map((social, i) => (
@@ -86,7 +86,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
            <div className="text-white/40 text-[11px] font-bold uppercase tracking-widest">
-              © {new Date().getFullYear()} Lausanne Collegiate School. All Rights Reserved.
+              © {new Date().getFullYear()} Govt. Graduate College, Satellite Town, Rawalpindi. All Rights Reserved.
            </div>
            <div className="flex gap-8 text-[11px] font-bold text-white/40 uppercase tracking-widest">
               <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>

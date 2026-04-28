@@ -21,11 +21,11 @@ export interface ISettings extends Document {
 
 const SettingsSchema = new Schema<ISettings>(
   {
-    schoolName: { type: String, default: 'Al-Noor Public School' },
-    tagline: { type: String, default: 'Nurturing Minds, Building Futures' },
-    address: { type: String, default: 'Main Bazaar, Peshawar, KPK, Pakistan' },
-    phone: { type: String, default: '+92 91 111 2222' },
-    email: { type: String, default: 'info@alnoorschool.edu.pk' },
+    schoolName: { type: String, default: 'Govt. Graduate College, Satellite Town, Rawalpindi' },
+    tagline: { type: String, default: 'Excellence in Higher Education' },
+    address: { type: String, default: 'Satellite Town, Rawalpindi, Punjab, Pakistan' },
+    phone: { type: String, default: '+92 (051) 1234567' },
+    email: { type: String, default: 'info@ggcstr.edu.pk' },
     established: { type: String, default: '1995' },
     principalName: { type: String, default: 'Mr. Ahmad Khan' },
     totalStudents: { type: Number, default: 1200 },

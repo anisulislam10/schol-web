@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Al-Noor Public School — Nurturing Minds, Building Futures',
-  description: 'Al-Noor Public School offers quality education from Class 1 to FSC in Peshawar. Enroll today.',
+  title: 'Govt. Graduate College, Satellite Town, Rawalpindi — Excellence in Higher Education',
+  description: 'Govt. Graduate College, Satellite Town, Rawalpindi offers quality higher education with distinguished faculty and modern facilities. Admissions open.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

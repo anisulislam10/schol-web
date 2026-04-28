@@ -62,6 +62,22 @@ export default function TeachersAdminPage() {
     }
   };
 
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const formData = new FormData();
+    formData.append('file', file);
+    try {
+      const res = await fetch('/api/upload', { method: 'POST', body: formData });
+      const data = await res.json();
+      if (data.url) {
+        setEditing(prev => prev ? { ...prev, photo: data.url } : null);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const handleDelete = async (id: string) => {
     if (!confirm('Are you sure you want to delete this teacher?')) return;
     try {
@@ -167,9 +183,14 @@ export default function TeachersAdminPage() {
                 <label className="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Primary Subject</label>
                 <input required type="text" value={editing.subject || ''} onChange={e => setEditing({...editing, subject: e.target.value})} className="w-full px-5 py-4 rounded-sm border border-slate-200 focus:border-[#ffcc00] outline-none text-sm font-medium" />
               </div>
+              <div>
+                <label className="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Qualifications (comma separated)</label>
+                <input type="text" value={editing.qualifications?.join(', ') || ''} onChange={e => setEditing({...editing, qualifications: e.target.value.split(',').map(s => s.trim())})} placeholder="MSc Physics, Ph.D" className="w-full px-5 py-4 rounded-sm border border-slate-200 focus:border-[#ffcc00] outline-none text-sm font-medium" />
+              </div>
               <div className="col-span-2">
-                <label className="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2 flex items-center gap-2"><Camera size={14} /> Profile Photo URL</label>
-                <input type="url" value={editing.photo || ''} onChange={e => setEditing({...editing, photo: e.target.value})} placeholder="https://images.unsplash.com/..." className="w-full px-5 py-4 rounded-sm border border-slate-200 focus:border-[#ffcc00] outline-none text-sm font-medium" />
+                <label className="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2 flex items-center gap-2"><Camera size={14} /> Profile Photo</label>
+                <input type="file" accept="image/*" onChange={handleFileUpload} className="w-full px-5 py-4 rounded-sm border border-slate-200 focus:border-[#ffcc00] outline-none text-sm font-medium bg-white" />
+                {editing.photo && <div className="mt-2 text-xs text-[#17a2b8]">Photo uploaded successfully!</div>}
               </div>
               <div className="col-span-2">
                 <label className="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Biography</label>

@@ -12,6 +12,20 @@ import {
 export default function HomePage({ data }: { data: any }) {
   const { features, teachers, notices, popups } = data;
   const [showPopup, setShowPopup] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const slides = [
+    { src: '/slider1.jpg', alt: 'Slider 1' },
+    { src: '/slider2.jpg', alt: 'Slider 2' },
+  ];
+
+  // Auto-slide every 3 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [slides.length]);
 
   useEffect(() => {
     if (popups && popups.length > 0) {
@@ -20,21 +34,31 @@ export default function HomePage({ data }: { data: any }) {
     }
   }, [popups]);
 
+  const goToPrev = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  const goToNext = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
+
   return (
     <div className="bg-white font-sans">
       <Navbar />
 
-      {/* 1. HERO SECTION */}
+      {/* 1. HERO SLIDER SECTION */}
       <section className="relative h-screen min-h-[800px] flex items-center justify-center text-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1523050853064-5a1099684364?auto=format&fit=crop&q=80&w=1920" 
-            alt="Students" 
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-[#002d56]/40" />
-        </div>
-        
+        {/* Slider Images */}
+        {slides.map((slide, index) => (
+          <div
+            key={index}
+            className="absolute inset-0 z-0 transition-opacity duration-1000 ease-in-out"
+            style={{ opacity: currentSlide === index ? 1 : 0 }}
+          >
+            <img
+              src={slide.src}
+              alt={slide.alt}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-[#002d56]/40" />
+          </div>
+        ))}
+
         <div className="relative z-10 max-w-5xl px-6 text-white">
           <h1 className="text-6xl md:text-8xl font-black mb-8 leading-[1.1] tracking-tight uppercase">
             Building Confidence <br /> Through Support
@@ -49,31 +73,54 @@ export default function HomePage({ data }: { data: any }) {
           </div>
         </div>
 
-        {/* Carousel Controls (Mock) */}
-        <button className="absolute left-10 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-all">
+        {/* Carousel Controls */}
+        <button
+          onClick={goToPrev}
+          className="absolute left-10 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-all"
+        >
           <ChevronLeft size={32} />
         </button>
-        <button className="absolute right-10 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-all">
+        <button
+          onClick={goToNext}
+          className="absolute right-10 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-all"
+        >
           <ChevronRight size={32} />
         </button>
+
+        {/* Slide Indicators */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex gap-3">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                currentSlide === index
+                  ? 'bg-[#ffcc00] scale-125'
+                  : 'bg-white/50 hover:bg-white/80'
+              }`}
+            />
+          ))}
+        </div>
       </section>
 
       {/* 2. EXPLORE SECTION */}
       <section className="py-24 bg-[#002d56] text-white">
         <div className="max-w-[1400px] mx-auto px-6 text-center">
-          <h2 className="text-4xl font-black mb-16 uppercase tracking-wider">Explore Lausanne</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <h2 className="text-4xl font-black mb-16 uppercase tracking-wider">Explore Our College</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { title: 'Lower School', img: 'https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&q=80&w=600' },
-              { title: 'Middle School', img: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=600' },
-              { title: 'Upper School', img: 'https://images.unsplash.com/photo-1523050853064-5a1099684364?auto=format&fit=crop&q=80&w=600' },
+              { title: 'BS Programs', img: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&q=80&w=600', desc: 'Bachelor of Science degree programs across multiple disciplines' },
+              { title: 'Pre Medical', img: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=600', desc: 'Preparing students for medical and health science careers' },
+              { title: 'Pre Engineering', img: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=600', desc: 'Foundation courses for engineering and technology fields' },
+              { title: 'ICS', img: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=600', desc: 'Intermediate in Computer Science for the digital future' },
             ].map((item, i) => (
               <div key={i} className="group relative overflow-hidden rounded-sm cursor-pointer">
-                <img src={item.img} alt={item.title} className="w-full h-[400px] object-cover group-hover:scale-110 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                <div className="absolute bottom-8 left-8 text-left">
-                  <h3 className="text-2xl font-black uppercase tracking-tighter mb-2">{item.title}</h3>
-                  <div className="w-12 h-1 bg-[#ffcc00]" />
+                <img src={item.img} alt={item.title} className="w-full h-[350px] object-cover group-hover:scale-110 transition-transform duration-700" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+                <div className="absolute bottom-8 left-6 right-6 text-left">
+                  <h3 className="text-xl font-black uppercase tracking-tighter mb-2">{item.title}</h3>
+                  <p className="text-white/70 text-xs font-medium leading-relaxed">{item.desc}</p>
+                  <div className="w-12 h-1 bg-[#ffcc00] mt-3" />
                 </div>
               </div>
             ))}
@@ -109,9 +156,9 @@ export default function HomePage({ data }: { data: any }) {
             </div>
             <div className="relative">
               <img 
-                src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=800" 
+                src="/ethics.webp" 
                 className="w-full h-[500px] object-cover rounded-sm shadow-2xl" 
-                alt="Service"
+                alt="Ethics and Character Building"
               />
               <div className="absolute -bottom-10 -left-10 w-40 h-40 border-[10px] border-white/20" />
             </div>
@@ -119,22 +166,6 @@ export default function HomePage({ data }: { data: any }) {
         </div>
       </section>
 
-      {/* 4. WORLD MAP SECTION */}
-      <section className="py-32 bg-slate-50 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
-          <span className="text-slate-400 font-bold text-sm uppercase tracking-[0.3em] block mb-4">A Diverse Global Presence</span>
-          <h2 className="text-4xl md:text-5xl font-black text-[#002d56] mb-16 uppercase tracking-tight">Our Students Come From Over 70 Countries</h2>
-          <div className="relative h-[500px] w-full bg-contain bg-center bg-no-repeat opacity-80" style={{ backgroundImage: "url('https://upload.wikimedia.org/wikipedia/commons/e/ec/World_map_blank_without_borders.svg')" }}>
-             {/* Animated Dots Mock */}
-             <div className="absolute top-1/3 left-1/4 w-3 h-3 bg-[#ffcc00] rounded-full animate-ping" />
-             <div className="absolute top-1/2 left-1/2 w-3 h-3 bg-[#ffcc00] rounded-full animate-ping" />
-             <div className="absolute top-1/4 left-3/4 w-3 h-3 bg-[#ffcc00] rounded-full animate-ping" />
-          </div>
-          <button className="mt-12 bg-[#002d56] text-white px-12 py-4 rounded-sm font-black text-xs uppercase tracking-widest hover:bg-[#ffcc00] hover:text-[#002d56] transition-all">
-            GLOBAL DIVERSITY
-          </button>
-        </div>
-      </section>
 
       {/* 5. OPPORTUNITIES SECTION */}
       <section className="relative py-40 overflow-hidden bg-[#002d56]">
@@ -147,7 +178,7 @@ export default function HomePage({ data }: { data: any }) {
             <span className="text-[#ffcc00] font-black text-sm uppercase tracking-widest block mb-6">Success</span>
             <h2 className="text-5xl md:text-7xl font-black mb-8 uppercase tracking-tighter leading-none">We Provide <br /> Opportunities <br /> to Succeed</h2>
             <p className="text-xl text-white/80 leading-relaxed font-medium mb-12 max-w-xl">
-              At Lausanne, students excel in academics, arts and athletics while developing the skills to succeed in college and beyond.
+              At Govt. Graduate College, students excel in academics and co-curricular activities while developing the skills to succeed in higher education and beyond.
             </p>
             <Link href="/success" className="bg-[#ffcc00] text-[#002d56] px-10 py-4 rounded-sm font-black text-xs uppercase tracking-widest hover:bg-white transition-all">
               LEARN MORE
@@ -198,7 +229,7 @@ export default function HomePage({ data }: { data: any }) {
       <section className="py-32 bg-[#002d56] text-white overflow-hidden relative">
         <div className="max-w-[1400px] mx-auto px-6 relative z-10 text-center">
            <span className="text-slate-400 font-bold text-xs uppercase tracking-[0.4em] block mb-6">Social Feed</span>
-           <h2 className="text-4xl md:text-5xl font-black mb-20 uppercase tracking-tight">What's Happening at Lausanne</h2>
+           <h2 className="text-4xl md:text-5xl font-black mb-20 uppercase tracking-tight">What's Happening at GGC</h2>
            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
               {notices.slice(0, 4).map((notice: any, i: number) => (
                 <div key={notice._id} className="bg-white text-[#002d56] text-left rounded-sm overflow-hidden flex flex-col group cursor-pointer">
@@ -206,7 +237,7 @@ export default function HomePage({ data }: { data: any }) {
                       <img src={`https://images.unsplash.com/photo-${1550000000000 + i}?auto=format&fit=crop&q=80&w=400&h=300`} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="News" />
                    </div>
                    <div className="p-6 flex-grow flex flex-col">
-                      <span className="text-[#17a2b8] font-bold text-[10px] uppercase tracking-widest mb-4">Lausanne News</span>
+                      <span className="text-[#17a2b8] font-bold text-[10px] uppercase tracking-widest mb-4">College News</span>
                       <h4 className="font-black text-lg mb-4 line-clamp-2 leading-snug uppercase tracking-tighter">{notice.title}</h4>
                       <p className="text-slate-500 text-[11px] font-medium mb-8 flex-grow line-clamp-3 leading-relaxed">
                         {notice.content}
@@ -227,9 +258,9 @@ export default function HomePage({ data }: { data: any }) {
       {/* 8. CALL TO ACTION */}
       <section className="py-32 bg-slate-100 text-center">
         <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-4xl md:text-5xl font-black text-[#002d56] mb-8 uppercase tracking-tighter leading-none">Want to be a Part of the Lynx Family?</h2>
+          <h2 className="text-4xl md:text-5xl font-black text-[#002d56] mb-8 uppercase tracking-tighter leading-none">Want to be a Part of GGC Family?</h2>
           <p className="text-xl text-slate-500 font-medium mb-12">
-            The best way to start finding your place at Lausanne is to connect with us in person and see our lively, organic campus community first-hand.
+            The best way to start finding your place at Govt. Graduate College is to connect with us in person and see our vibrant campus community first-hand.
           </p>
           <Link href="/visit" className="bg-[#ffcc00] text-[#002d56] px-12 py-5 rounded-sm font-black text-sm uppercase tracking-widest hover:bg-[#002d56] hover:text-white transition-all shadow-xl">
              PLAN YOUR CAMPUS VISIT

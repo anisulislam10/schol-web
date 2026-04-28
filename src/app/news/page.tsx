@@ -3,6 +3,7 @@ import Notice from '@/lib/models/Notice';
 import Navbar from '@/components/public/Navbar';
 import Footer from '@/components/public/Footer';
 import { Calendar, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
 export const runtime = 'nodejs';
 export const revalidate = 0;
@@ -48,9 +49,9 @@ export default async function NewsPage() {
                 <p className="text-slate-500 font-medium leading-relaxed line-clamp-3 mb-8">
                   {item.content}
                 </p>
-                <button className="text-[#002d56] font-black text-[10px] uppercase tracking-widest border-b-2 border-[#ffcc00] pb-1 hover:border-[#002d56] transition-all flex items-center gap-2">
+                <Link href={`/news/${item._id}`} className="inline-flex text-[#002d56] font-black text-[10px] uppercase tracking-widest border-b-2 border-[#ffcc00] pb-1 hover:border-[#002d56] transition-all items-center gap-2">
                    Read Full Story <ArrowRight size={14} />
-                </button>
+                </Link>
               </div>
             </div>
           ))}
