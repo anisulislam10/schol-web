@@ -249,9 +249,9 @@ export default function HomePage({ data }: { data: any }) {
                 </div>
               ))}
            </div>
-           <button className="mt-20 bg-[#ffcc00] text-[#002d56] px-12 py-4 rounded-sm font-black text-xs uppercase tracking-widest hover:bg-white transition-all">
+           <Link href="/news" className="inline-block mt-20 bg-[#ffcc00] text-[#002d56] px-12 py-4 rounded-sm font-black text-xs uppercase tracking-widest hover:bg-white transition-all">
              VIEW ALL NEWS
-           </button>
+           </Link>
         </div>
       </section>
 
