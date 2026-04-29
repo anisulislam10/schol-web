@@ -1,5 +1,6 @@
 import dbConnect from '@/lib/db';
 import Admission from '@/lib/models/Admission';
+import DynamicPage from '@/lib/models/DynamicPage';
 import Navbar from '@/components/public/Navbar';
 import Footer from '@/components/public/Footer';
 
@@ -15,6 +16,14 @@ async function getAdmissions() {
 export default async function AdmissionsPage() {
   const admissions = await getAdmissions();
 
+  await dbConnect();
+  const rawPage = await DynamicPage.findOne({ slug: 'admissions' }).lean();
+  const pageData = rawPage ? JSON.parse(JSON.stringify(rawPage)) : null;
+
+  const pageTitle = pageData?.title || 'Admissions';
+  const pageDesc = pageData?.description || 'Join the GGC Family';
+  const pageImg = pageData?.image || 'https://images.unsplash.com/photo-1523050853064-5a1099684364?auto=format&fit=crop&q=80&w=1920';
+
   return (
     <div className="bg-white min-h-screen font-sans">
       <Navbar />
@@ -23,15 +32,15 @@ export default async function AdmissionsPage() {
       <section className="relative h-[60vh] min-h-[500px] flex items-center justify-center text-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1523050853064-5a1099684364?auto=format&fit=crop&q=80&w=1920" 
-            alt="Admissions" 
+            src={pageImg} 
+            alt={pageTitle} 
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-[#002d56]/60" />
         </div>
         <div className="relative z-10 max-w-4xl px-6 text-white">
-          <h1 className="text-5xl md:text-7xl font-black mb-6 uppercase tracking-tighter">Admissions</h1>
-          <p className="text-xl text-white/80 font-medium tracking-wide uppercase">Join the GGC Family</p>
+          <h1 className="text-5xl md:text-7xl font-black mb-6 uppercase tracking-tighter">{pageTitle}</h1>
+          <p className="text-xl text-white/80 font-medium tracking-wide uppercase">{pageDesc}</p>
         </div>
       </section>
 

@@ -8,6 +8,7 @@ export const runtime = 'nodejs';
 
 // These are static pages whose routes are fixed — content is editable but they cannot be deleted
 const SYSTEM_PAGES = [
+  { slug: 'admissions', title: 'Admissions Page', category: 'Admissions' },
   { slug: 'degrees', title: 'Degrees', category: 'Academics' },
   { slug: 'fee-structure', title: 'Fee Structure', category: 'Admissions' },
   { slug: 'admission-criteria', title: 'Admission Criteria', category: 'Admissions' },

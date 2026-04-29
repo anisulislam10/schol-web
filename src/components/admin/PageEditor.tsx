@@ -9,6 +9,8 @@ export default function PageEditor({ initialData, mode = 'create', lockSlug = fa
   const [formData, setFormData] = useState({
     title: initialData?.title || '',
     slug: initialData?.slug || '',
+    description: initialData?.description || '',
+    image: initialData?.image || '',
     content: initialData?.content || '',
     isActive: initialData?.isActive ?? true
   });
@@ -79,6 +81,31 @@ export default function PageEditor({ initialData, mode = 'create', lockSlug = fa
                   placeholder="fee-structure"
                 />
               </div>
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Short Description (Optional)</label>
+            <textarea 
+              rows={3}
+              value={formData.description}
+              onChange={e => setFormData({...formData, description: e.target.value})}
+              className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-sm focus:border-[#ffcc00] outline-none font-medium text-slate-600 transition-all"
+              placeholder="Brief summary or subtitle for the page..."
+            />
+          </div>
+          
+          <div className="space-y-3">
+            <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Hero Image URL (Optional)</label>
+            <div className="relative">
+              <Globe className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300" size={18} />
+              <input 
+                type="url"
+                value={formData.image}
+                onChange={e => setFormData({...formData, image: e.target.value})}
+                className="w-full pl-12 pr-6 py-4 bg-slate-50 border border-slate-100 rounded-sm focus:border-[#ffcc00] outline-none font-medium transition-all"
+                placeholder="https://example.com/image.jpg"
+              />
             </div>
           </div>
 
