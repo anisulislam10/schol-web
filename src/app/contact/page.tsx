@@ -1,5 +1,6 @@
 import Navbar from '@/components/public/Navbar';
 import Footer from '@/components/public/Footer';
+import ContactForm from '@/components/public/ContactForm';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 
 export const runtime = 'nodejs';
@@ -59,26 +60,7 @@ export default function ContactPage() {
               </div>
             </div>
           </div>
-          <div className="bg-slate-50 rounded-sm p-10 border border-slate-100">
-            <h2 className="text-2xl font-black text-[#002d56] uppercase tracking-tighter mb-6">Send a Message</h2>
-            <form className="space-y-6">
-              <div>
-                <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 block mb-2">Full Name</label>
-                <input type="text" className="w-full px-4 py-3 bg-white border border-slate-200 rounded-sm focus:border-[#ffcc00] outline-none font-medium text-[#002d56]" placeholder="Your full name" />
-              </div>
-              <div>
-                <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 block mb-2">Email</label>
-                <input type="email" className="w-full px-4 py-3 bg-white border border-slate-200 rounded-sm focus:border-[#ffcc00] outline-none font-medium text-[#002d56]" placeholder="your@email.com" />
-              </div>
-              <div>
-                <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 block mb-2">Message</label>
-                <textarea rows={5} className="w-full px-4 py-3 bg-white border border-slate-200 rounded-sm focus:border-[#ffcc00] outline-none font-medium text-[#002d56]" placeholder="Write your message..." />
-              </div>
-              <button type="submit" className="bg-[#002d56] text-white px-10 py-4 rounded-sm font-black text-xs uppercase tracking-widest hover:bg-[#ffcc00] hover:text-[#002d56] transition-all w-full">
-                Send Message
-              </button>
-            </form>
-          </div>
+          <ContactForm />
         </div>
       </section>
 
