@@ -31,11 +31,11 @@ export default async function ProgramsPage() {
           {programs.map((prog: any) => (
             <div key={prog._id} className="bg-white rounded-sm shadow-xl border border-slate-100 overflow-hidden group hover:border-[#ffcc00] transition-all">
               <div className="h-64 bg-slate-100 relative overflow-hidden">
-                {prog.image ? (
-                  <img src={prog.image} alt={prog.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center text-slate-300 font-bold uppercase tracking-widest text-xs">No Image</div>
-                )}
+                <img 
+                  src={prog.image || '/slider1.jpg'} 
+                  alt={prog.title} 
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#002d56]/80 via-transparent to-transparent opacity-60" />
               </div>
               <div className="p-8">

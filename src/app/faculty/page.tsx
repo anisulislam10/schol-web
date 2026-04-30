@@ -34,7 +34,7 @@ export default async function FacultyPage() {
             <div key={teacher._id} className="bg-white rounded-sm overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 group border border-slate-100">
               <div className="h-96 overflow-hidden relative">
                 <img 
-                  src={teacher.photo || 'https://images.unsplash.com/photo-1544161515-4ae6ce6ea858?auto=format&fit=crop&q=80&w=600'} 
+                  src={teacher.photo || '/slider1.jpg'} 
                   alt={teacher.name} 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />

@@ -90,7 +90,7 @@ export async function POST() {
 
     // 7. Admissions (Posters)
     await Admission.create([
-      { title: 'Fall Admissions 2024', description: 'Last date to apply is August 30th.', poster: 'https://images.unsplash.com/photo-1523050853064-5a1099684364?auto=format&fit=crop&q=80&w=800', order: 1 },
+      { title: 'Fall Admissions 2024', description: 'Last date to apply is August 30th.', poster: '/slider1.jpg', order: 1 },
     ]);
 
     // 8. Downloads
@@ -101,7 +101,7 @@ export async function POST() {
 
     // 9. Popup
     await Popup.create([
-      { title: 'Urgent: Registration Deadline', description: 'The deadline for semester registration has been extended to Monday.', image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&q=80&w=600', isActive: true },
+      { title: 'Urgent: Registration Deadline', description: 'The deadline for semester registration has been extended to Monday.', image: '/slider1.jpg', isActive: true },
     ]);
 
     return NextResponse.json({ message: 'Database seeded successfully with dynamic content!' });

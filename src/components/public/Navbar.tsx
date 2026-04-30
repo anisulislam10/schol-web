@@ -168,7 +168,7 @@ export default function Navbar() {
               </div>
             ))}
             <Link
-              href="/apply"
+              href="/admissions"
               className="bg-[#ffcc00] text-[#002d56] px-12 py-4 rounded-md font-bold text-lg text-center mt-6"
               onClick={() => setMobileMenuOpen(false)}
             >

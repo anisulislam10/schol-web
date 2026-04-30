@@ -33,7 +33,7 @@ export default async function NewsPage() {
             <div key={item._id.toString()} className="bg-white rounded-sm shadow-xl border border-slate-100 overflow-hidden flex flex-col hover:border-[#ffcc00] transition-all group">
               <div className="h-64 bg-slate-100 overflow-hidden relative">
                 <img 
-                   src={`https://images.unsplash.com/photo-${1550000000000 + i}?auto=format&fit=crop&q=80&w=800`} 
+                   src={item.image || '/slider1.jpg'} 
                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
                    alt="News" 
                 />

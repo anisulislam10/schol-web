@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
     const ext = file.name ? path.extname(file.name) : '';
     const filename = `${crypto.randomUUID()}${ext}`;
     
-    const uploadDir = path.join(process.cwd(), 'public', 'uploads');
+    const uploadDir = path.join(process.cwd(), 'uploads');
     
     // Ensure dir exists
     if (!fs.existsSync(uploadDir)) {

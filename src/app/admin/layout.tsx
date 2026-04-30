@@ -26,6 +26,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     { label: 'Programs', icon: FileText, href: '/admin/programs' },
     { label: 'Teachers', icon: Users, href: '/admin/teachers' },
     { label: 'Notices', icon: Bell, href: '/admin/notices' },
+    { label: 'Admissions', icon: FileText, href: '/admin/admissions' },
     { label: 'Fee Structure', icon: FileText, href: '/admin/fees' },
     { label: 'Downloads', icon: FileText, href: '/admin/downloads' },
     { label: 'Features', icon: Star, href: '/admin/features' },

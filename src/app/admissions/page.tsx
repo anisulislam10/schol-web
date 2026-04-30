@@ -22,7 +22,7 @@ export default async function AdmissionsPage() {
 
   const pageTitle = pageData?.title || 'Admissions';
   const pageDesc = pageData?.description || 'Join the GGC Family';
-  const pageImg = pageData?.image || 'https://images.unsplash.com/photo-1523050853064-5a1099684364?auto=format&fit=crop&q=80&w=1920';
+  const pageImg = pageData?.image || '/slider1.jpg';
 
   return (
     <div className="bg-white min-h-screen font-sans">
@@ -51,7 +51,7 @@ export default async function AdmissionsPage() {
             <div key={item._id} className="group relative bg-slate-50 rounded-sm overflow-hidden border border-slate-100 hover:border-[#ffcc00] transition-all duration-500 shadow-xl">
               <div className="aspect-[16/9] overflow-hidden relative">
                 <img 
-                  src={item.poster || 'https://images.unsplash.com/photo-1523050853064-5a1099684364?auto=format&fit=crop&q=80&w=800'} 
+                  src={item.poster || '/slider1.jpg'} 
                   alt={item.title} 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />

@@ -19,8 +19,9 @@ async function getNotice(id: string) {
   }
 }
 
-export default async function NewsDetailsPage({ params }: { params: { id: string } }) {
-  const notice = await getNotice(params.id);
+export default async function NewsDetailsPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const notice = await getNotice(id);
 
   if (!notice || !notice.isActive) {
     notFound();
@@ -65,10 +66,13 @@ export default async function NewsDetailsPage({ params }: { params: { id: string
                 target="_blank" 
                 className="inline-flex items-center gap-3 bg-slate-50 border border-slate-200 px-6 py-4 rounded-sm text-[#002d56] font-bold text-xs uppercase tracking-widest hover:border-[#ffcc00] transition-all group"
               >
-                <div className="w-8 h-8 bg-[#002d56] text-white rounded-sm flex items-center justify-center group-hover:bg-[#ffcc00] group-hover:text-[#002d56] transition-colors">
+                <div className="w-8 h-8 flex-shrink-0 bg-[#002d56] text-white rounded-sm flex items-center justify-center group-hover:bg-[#ffcc00] group-hover:text-[#002d56] transition-colors">
                   <Download size={16} />
                 </div>
-                View / Download Attachment
+                <div className="flex flex-col text-left max-w-sm">
+                   <span className="font-black text-[#002d56]">{notice.title} Document</span>
+                   <span className="text-slate-500 font-medium normal-case text-[10px] mt-0.5 line-clamp-1">{notice.content}</span>
+                </div>
               </a>
             </div>
           )}

@@ -234,7 +234,7 @@ export default function HomePage({ data }: { data: any }) {
               {notices.slice(0, 4).map((notice: any, i: number) => (
                 <div key={notice._id} className="bg-white text-[#002d56] text-left rounded-sm overflow-hidden flex flex-col group cursor-pointer">
                    <div className="h-48 bg-slate-100 relative overflow-hidden">
-                      <img src={`https://images.unsplash.com/photo-${1550000000000 + i}?auto=format&fit=crop&q=80&w=400&h=300`} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="News" />
+                      <img src={notice.image || '/slider1.jpg'} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="News" />
                    </div>
                    <div className="p-6 flex-grow flex flex-col">
                       <span className="text-[#17a2b8] font-bold text-[10px] uppercase tracking-widest mb-4">College News</span>

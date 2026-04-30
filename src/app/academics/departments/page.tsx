@@ -32,7 +32,7 @@ export default async function DepartmentsPage() {
             <div key={dept._id} className="bg-white rounded-sm overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 group border border-slate-100">
               <div className="h-64 overflow-hidden relative">
                 <img 
-                  src={dept.image || 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&q=80&w=800'} 
+                  src={dept.image || '/slider1.jpg'} 
                   alt={dept.name} 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
