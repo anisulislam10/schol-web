@@ -5,19 +5,23 @@ import Notice from '@/lib/models/Notice';
 import Download from '@/lib/models/Download';
 import Admission from '@/lib/models/Admission';
 import Popup from '@/lib/models/Popup';
+import Department from '@/lib/models/Department';
+import Settings from '@/lib/models/Settings';
 import ModernHome from '@/components/public/ModernHome';
 
 export const revalidate = 0;
 
 async function getData() {
   await dbConnect();
-  const [features, teachers, notices, downloads, admissions, popups] = await Promise.all([
+  const [features, teachers, notices, downloads, admissions, popups, departments, settings] = await Promise.all([
     Feature.find({ isActive: true }).sort({ order: 1 }).lean(),
     Teacher.find({ isActive: true }).sort({ order: 1, createdAt: -1 }).lean(),
     Notice.find({ isActive: true }).sort({ date: -1, createdAt: -1 }).lean(),
     Download.find({ isActive: true }).sort({ order: 1 }).lean(),
     Admission.find({ isActive: true }).sort({ order: 1 }).lean(),
-    Popup.find({ isActive: true }).sort({ order: 1 }).lean()
+    Popup.find({ isActive: true }).sort({ order: 1 }).lean(),
+    Department.find({ isActive: true }).sort({ order: 1 }).lean(),
+    Settings.findOne({}).lean()
   ]);
 
   return {
@@ -26,7 +30,9 @@ async function getData() {
     notices: JSON.parse(JSON.stringify(notices)),
     downloads: JSON.parse(JSON.stringify(downloads)),
     admissions: JSON.parse(JSON.stringify(admissions)),
-    popups: JSON.parse(JSON.stringify(popups))
+    popups: JSON.parse(JSON.stringify(popups)),
+    departments: JSON.parse(JSON.stringify(departments)),
+    settings: JSON.parse(JSON.stringify(settings || {}))
   };
 }
 

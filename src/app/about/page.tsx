@@ -2,10 +2,19 @@ import Navbar from '@/components/public/Navbar';
 import Footer from '@/components/public/Footer';
 import Link from 'next/link';
 import { Target, Eye, ShieldCheck, Zap, BookOpen, Users, Compass, ChevronRight } from 'lucide-react';
+import dbConnect from '@/lib/db';
+import Settings from '@/lib/models/Settings';
 
-export const runtime = 'nodejs';
+export const revalidate = 0;
 
-export default function AboutPage() {
+async function getSettings() {
+  await dbConnect();
+  return await Settings.findOne({}).lean();
+}
+
+export default async function AboutPage() {
+  const settings = await getSettings();
+  
   return (
     <div className="bg-slate-50 min-h-screen font-sans overflow-x-hidden">
       <Navbar />
@@ -31,9 +40,9 @@ export default function AboutPage() {
       <section className="relative z-20 -mt-16 px-6">
         <div className="max-w-[1200px] mx-auto bg-white rounded-lg shadow-2xl overflow-hidden flex flex-col md:flex-row border border-slate-100">
           {[
-            { value: 'Est. 1950', label: 'Rich History & Heritage' },
-            { value: '5,000+', label: 'Enrolled Students' },
-            { value: '120+', label: 'Distinguished Faculty' },
+            { value: `Est. ${settings?.established || '1950'}`, label: 'Rich History & Heritage' },
+            { value: `${settings?.totalStudents || '5,000'}+`, label: 'Enrolled Students' },
+            { value: `${settings?.totalTeachers || '120'}+`, label: 'Distinguished Faculty' },
           ].map((stat, i) => (
             <div key={i} className="flex-1 p-10 text-center border-b md:border-b-0 md:border-r border-slate-100 last:border-0 hover:bg-[#fafafa] transition-colors">
               <h3 className="text-4xl font-black text-[#002d56] uppercase tracking-tighter mb-2">{stat.value}</h3>

@@ -16,7 +16,9 @@ const SYSTEM_PAGES = [
   { slug: 'contact-us', title: 'Contact Us', category: 'About' },
   { slug: 'committees', title: 'Institute Committees', category: 'About' },
   { slug: 'leadership', title: 'Institute Leadership', category: 'About' },
-  { slug: 'vacancies', title: 'Vacancy Positions', category: 'About' },
+  { slug: 'privacy', title: 'Privacy Policy', category: 'Legal' },
+  { slug: 'accessibility', title: 'Accessibility', category: 'Legal' },
+  { slug: 'sitemap', title: 'Sitemap', category: 'Legal' },
 ];
 
 const SYSTEM_SLUGS = SYSTEM_PAGES.map(p => p.slug);
