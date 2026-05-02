@@ -10,7 +10,7 @@ import {
 } from 'lucide-react';
 
 export default function HomePage({ data }: { data: any }) {
-  const { features, teachers, notices, popups, departments, admissions, settings } = data;
+  const { features, teachers, notices, popups, departments, admissions, settings, gallery } = data;
   const [showPopup, setShowPopup] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -225,6 +225,33 @@ export default function HomePage({ data }: { data: any }) {
           </div>
         </div>
       </section>
+
+      {/* 6.5 CAMPUS GALLERY SECTION */}
+      {gallery && gallery.length > 0 && (
+        <section className="py-32 bg-white overflow-hidden">
+          <div className="max-w-[1400px] mx-auto px-6 text-center">
+            <span className="text-[#17a2b8] font-bold text-xs uppercase tracking-[0.4em] block mb-6">Gallery</span>
+            <h2 className="text-4xl md:text-5xl font-black text-[#002d56] mb-20 uppercase tracking-tight">Life at GGC</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {gallery.map((item: any) => (
+                <div key={item._id} className="group relative h-80 overflow-hidden rounded-sm cursor-pointer border border-slate-100">
+                  <img src={item.imageUrl} alt={item.caption} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute bottom-6 left-6 right-6 text-left transform translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                    <p className="text-white text-sm font-black uppercase tracking-tight mb-2">{item.caption}</p>
+                    <div className="w-8 h-1 bg-[#ffcc00]" />
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-16">
+              <Link href="/gallery" className="text-[#002d56] font-black text-xs uppercase tracking-widest border-b-2 border-[#ffcc00] pb-1 hover:text-[#ffcc00] transition-colors">
+                VIEW MORE GALLERY
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* 7. NEWS SECTION */}
       <section className="py-32 bg-[#002d56] text-white overflow-hidden relative">
