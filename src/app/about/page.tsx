@@ -122,42 +122,7 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      {/* Quick Links Section */}
-      <section className="py-32 px-6 bg-slate-50 overflow-hidden relative">
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-[#ffcc00] rounded-full blur-[120px] opacity-20 pointer-events-none" />
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-[#17a2b8] rounded-full blur-[120px] opacity-10 pointer-events-none" />
-        
-        <div className="max-w-[1400px] mx-auto relative z-10">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-            <div>
-              <h2 className="text-4xl md:text-6xl font-black text-[#002d56] uppercase tracking-tighter">Explore Campus</h2>
-              <p className="text-slate-500 font-medium mt-4 max-w-xl">Find details on our leadership, departments, and career opportunities right here at Govt. Graduate College.</p>
-            </div>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-            {[
-              { title: 'Faculty', href: '/faculty', desc: 'Meet our distinguished educators' },
-              { title: 'Institute Committees', href: '/about/committees', desc: 'College committees and their roles' },
-              { title: 'Institute Leadership', href: '/about/leadership', desc: 'Our leadership team & management' },
-              { title: 'Non Teaching Staff', href: '/about/staff', desc: 'Our dedicated support staff members' },
-              { title: 'Institute Facilities', href: '/about/facilities', desc: 'Library, Labs, and Campus Resources' },
-              { title: 'Vacancy Positions', href: '/about/vacancies', desc: 'Current job openings and careers' },
-            ].map((item, index) => (
-              <Link key={item.href} href={item.href} className="flex flex-col bg-white p-10 rounded-xl border border-slate-100 hover:border-[#ffcc00] transition-all duration-300 shadow-md hover:shadow-2xl group overflow-hidden relative">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-slate-50 rounded-bl-[100px] -mr-10 -mt-10 group-hover:bg-[#ffcc00]/10 transition-colors" />
-                <h3 className="text-2xl font-black text-[#002d56] uppercase tracking-tighter mb-3 relative z-10">{item.title}</h3>
-                <p className="text-slate-500 font-medium mb-12 relative z-10">{item.desc}</p>
-                <div className="mt-auto flex justify-end">
-                   <div className="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center text-[#002d56] group-hover:bg-[#002d56] group-hover:text-[#ffcc00] group-hover:border-[#002d56] transform group-hover:translate-x-2 transition-all duration-300">
-                     <ChevronRight size={20} />
-                   </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <Footer />
     </div>
