@@ -1,13 +1,28 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import Chatbot from '@/components/public/Chatbot';
+import dbConnect from '@/lib/db';
+import Settings from '@/lib/models/Settings';
 
 export const metadata: Metadata = {
   title: 'Govt. Graduate College, Peshawar Road, Rawalpindi  — Excellence in Higher Education',
   description: 'Govt. Graduate College, Peshawar Road, Rawalpindi  offers quality higher education with distinguished faculty and modern facilities. Admissions open.',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+async function getSettings() {
+  try {
+    await dbConnect();
+    return await Settings.findOne({}).lean();
+  } catch (error) {
+    console.error('Failed to fetch settings for layout:', error);
+    return null;
+  }
+}
+
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const settings = await getSettings();
+  const serializedSettings = settings ? JSON.parse(JSON.stringify(settings)) : null;
+
   return (
     <html lang="en">
       <head>
@@ -17,7 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         {children}
-        <Chatbot />
+        <Chatbot settings={serializedSettings} />
       </body>
     </html>
   );

@@ -9,15 +9,22 @@ type Message = {
   isUser: boolean;
 };
 
-export default function Chatbot() {
+export default function Chatbot({ settings }: { settings?: any }) {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { text: "Hello! I'm the GGC Assistant. How can I help you today?", isUser: false }
+    { text: `Hello! I'm the ${settings?.schoolName || 'GGC'} Assistant. How can I help you today?`, isUser: false }
   ]);
   const [input, setInput] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Dynamic values from settings
+  const schoolName = settings?.schoolName || "Govt. Graduate College";
+  const phone = settings?.phone || "+92 (051) 1234567";
+  const email = settings?.email || "info@ggcstr.edu.pk";
+  const address = settings?.address || "Peshawar Road, Rawalpindi";
+
 
   // Moved early return check down to render section to follow Rules of Hooks
 
@@ -63,12 +70,12 @@ export default function Chatbot() {
         intent: 'identity',
         keywords: ['who', 'what', 'bot', 'robot', 'name', 'assistant'],
         contextWords: ['are', 'you', 'your', 'is'],
-        answer: "I am the GGC Assistant, a virtual helper here to answer your questions about Govt. Graduate College, its admissions, and more!"
+        answer: `I am the ${schoolName} Assistant, a virtual helper here to answer your questions about our college, its admissions, and more!`
       },
       {
         intent: 'admissions',
         keywords: ['admission', 'admissions', 'apply', 'enroll', 'form', 'join', 'register'],
-        answer: "Admissions are currently open for Fall 2024. You can apply by clicking 'Apply Now' in the navigation bar or visiting our Admissions page."
+        answer: "Admissions are currently open for the current session. You can apply by clicking 'Apply Now' in the navigation bar or visiting our Admissions page."
       },
       {
         intent: 'fees',
@@ -78,7 +85,7 @@ export default function Chatbot() {
       {
         intent: 'contact',
         keywords: ['contact', 'phone', 'email', 'reach', 'number', 'call', 'telephone'],
-        answer: "You can reach us at +92 (051) 1234567 or email info@ggcstr.edu.pk. We are located at Peshawar Road, Rawalpindi ."
+        answer: `You can reach us at ${phone} or email ${email}. We are located at ${address}.`
       },
       {
         intent: 'programs',
@@ -99,7 +106,7 @@ export default function Chatbot() {
       {
         intent: 'location',
         keywords: ['location', 'address', 'where', 'map', 'situated', 'located', 'find', 'place'],
-        answer: "We are located at Peshawar Road, Rawalpindi , Punjab, Pakistan."
+        answer: `We are located at ${address}.`
       },
       {
         intent: 'news',
