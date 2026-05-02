@@ -135,49 +135,52 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="xl:hidden fixed inset-0 bg-[#002d56] z-[999] pt-24 px-6 overflow-y-auto pb-12">
-          {/* Mobile Close Button Inside Overlay */}
-          <button 
-            onClick={() => setMobileMenuOpen(false)}
-            className="absolute top-6 right-6 text-white/50 hover:text-white transition-colors"
-          >
-            <X size={32} />
-          </button>
-          
+      {/* Mobile Menu Overlay */}
+      <div className={`xl:hidden fixed inset-0 bg-[#002d56] z-[2000] transition-all duration-500 flex flex-col ${mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+        {/* Header inside mobile menu */}
+        <div className="flex items-center justify-between p-6 border-b border-white/5">
+           <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-white rounded-sm flex items-center justify-center p-1">
+                <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" />
+              </div>
+              <span className="text-white font-bold text-sm tracking-tight">GGC RAWALPINDI</span>
+           </Link>
+           <button 
+             onClick={() => setMobileMenuOpen(false)}
+             className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-white"
+           >
+             <X size={28} />
+           </button>
+        </div>
+
+        {/* Links */}
+        <div className="flex-1 overflow-y-auto px-6 py-8">
           <div className="flex flex-col gap-2">
             {navLinks.map((link) => (
-              <div key={link.name} className="border-b border-white/5 py-4">
-                <div className="flex justify-between items-center">
+              <div key={`mobile-${link.name}`} className="border-b border-white/5 last:border-0">
+                <div className="flex justify-between items-center py-4">
                   <Link
                     href={link.href}
-                    className="text-white text-[20px] font-black uppercase tracking-tighter hover:text-[#ffcc00] transition-colors"
+                    className="text-white text-xl font-black uppercase tracking-tighter hover:text-[#ffcc00] transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {link.name}
                   </Link>
                   {link.dropdown && (
                     <button 
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setActiveDropdown(activeDropdown === link.name ? null : link.name);
-                      }}
-                      className="p-2"
+                      onClick={() => setActiveDropdown(activeDropdown === link.name ? null : link.name)}
+                      className={`p-2 transition-transform duration-300 ${activeDropdown === link.name ? 'rotate-180 text-[#ffcc00]' : 'text-white/30'}`}
                     >
-                      <ChevronDown 
-                        size={20} 
-                        className={`text-white/50 transition-transform ${activeDropdown === link.name ? 'rotate-180' : ''}`} 
-                      />
+                      <ChevronDown size={24} />
                     </button>
                   )}
                 </div>
                 
                 {link.dropdown && activeDropdown === link.name && (
-                  <div className="flex flex-col gap-5 mt-6 pl-4 animate-in slide-in-from-top-2 duration-200">
+                  <div className="flex flex-col gap-5 pb-6 pl-4 animate-in fade-in slide-in-from-top-2 duration-300">
                     {link.dropdown.map((item) => (
                       <Link
-                        key={item.href}
+                        key={`mobile-sub-${item.name}`}
                         href={item.href}
                         className="text-white/60 text-[15px] font-bold uppercase tracking-wider hover:text-[#ffcc00] transition-colors"
                         onClick={() => setMobileMenuOpen(false)}
@@ -189,19 +192,19 @@ export default function Navbar() {
                 )}
               </div>
             ))}
-            
-            <div className="pt-8">
-              <Link
-                href="/admissions"
-                className="block bg-[#ffcc00] text-[#002d56] px-12 py-5 rounded-sm font-black text-lg text-center shadow-2xl hover:bg-white transition-all uppercase tracking-tighter"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Apply for Admission
-              </Link>
-            </div>
+          </div>
+          
+          <div className="mt-12">
+            <Link
+              href="/admissions"
+              className="block bg-[#ffcc00] text-[#002d56] py-5 rounded-sm font-black text-center shadow-xl hover:bg-white transition-all uppercase tracking-tighter text-lg"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Apply for Admission
+            </Link>
           </div>
         </div>
-      )}
+      </div>
     </header>
   );
 }
