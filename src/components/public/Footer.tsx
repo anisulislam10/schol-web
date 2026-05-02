@@ -70,25 +70,44 @@ export default function Footer() {
           </div>
 
           {/* Accreditations */}
-          <div className="lg:col-span-2 flex flex-col items-center lg:items-end gap-6">
-             <h4 className="text-[#ffcc00] font-black text-[10px] uppercase tracking-[0.3em] mb-2 opacity-80">Accreditations</h4>
-             
-             <div className="group relative w-24 h-24 bg-white/5 backdrop-blur-sm rounded-full flex flex-col items-center justify-center border border-white/10 hover:border-[#ffcc00]/50 transition-all duration-500 shadow-2xl overflow-hidden">
+          <div className="lg:col-span-2 flex flex-col items-center lg:items-end gap-5">
+             <h4 className="text-[#ffcc00] font-black text-[10px] uppercase tracking-[0.3em] opacity-80 self-start lg:self-end">Accreditations</h4>
+
+             {/* HEC Logo */}
+             <div className="group w-28 h-20 bg-white rounded-lg flex items-center justify-center border border-white/10 hover:border-[#ffcc00]/60 hover:shadow-[0_0_20px_rgba(255,204,0,0.15)] transition-all duration-300 p-2 shadow-xl">
+                <img
+                  src="https://www.hec.gov.pk/SiteAssets/higher-education-commission-pakistan-logo.png"
+                  alt="HEC - Higher Education Commission Pakistan"
+                  className="w-full h-full object-contain"
+                />
+             </div>
+
+             {/* BISE Rawalpindi Logo */}
+             <div className="group w-20 h-20 bg-white rounded-lg flex items-center justify-center border border-white/10 hover:border-[#ffcc00]/60 hover:shadow-[0_0_20px_rgba(255,204,0,0.15)] transition-all duration-300 p-2 shadow-xl">
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/en/2/20/BISE_Rawalpindi_logo.png"
+                  alt="BISE Rawalpindi"
+                  className="w-full h-full object-contain"
+                />
+             </div>
+
+             {/* IB World School */}
+             <div className="group relative w-24 h-14 bg-white/5 backdrop-blur-sm rounded-md flex flex-col items-center justify-center border border-white/10 hover:border-[#ffcc00]/50 transition-all duration-300 shadow-xl overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#ffcc00]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <span className="text-[11px] font-black text-center px-3 leading-none tracking-tighter text-[#ffcc00]">IB WORLD</span>
-                <span className="text-[9px] font-bold text-white/40 mt-1 uppercase tracking-widest leading-none">SCHOOL</span>
+                <span className="text-[10px] font-black text-center leading-none tracking-tighter text-[#ffcc00]">IB WORLD</span>
+                <span className="text-[8px] font-bold text-white/40 mt-1 uppercase tracking-widest leading-none">SCHOOL</span>
              </div>
 
-             <div className="group relative w-28 h-14 bg-white/5 backdrop-blur-sm rounded-md flex flex-col items-center justify-center border border-white/10 hover:border-[#ffcc00]/50 transition-all duration-500 shadow-2xl overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#ffcc00]/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-                <span className="text-[11px] font-black tracking-[0.15em] text-[#ffcc00]">CIS</span>
-                <span className="text-[8px] font-bold text-white/50 uppercase tracking-[0.2em] mt-1">MEMBER</span>
-             </div>
-
-             <div className="group relative w-24 h-24 bg-white/5 backdrop-blur-sm rounded-full flex flex-col items-center justify-center border border-white/10 hover:border-[#ffcc00]/50 transition-all duration-500 shadow-2xl overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-tr from-[#ffcc00]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <span className="text-[11px] font-black text-center px-4 leading-none tracking-tighter text-[#ffcc00]">SAIS</span>
-                <span className="text-[9px] font-bold text-white/40 mt-1 uppercase tracking-widest leading-none text-center">ACCREDITED</span>
+             {/* CIS & SAIS */}
+             <div className="flex gap-3">
+               <div className="group relative w-16 h-14 bg-white/5 backdrop-blur-sm rounded-md flex flex-col items-center justify-center border border-white/10 hover:border-[#ffcc00]/50 transition-all duration-300 shadow-xl overflow-hidden">
+                  <span className="text-[10px] font-black tracking-wider text-[#ffcc00]">CIS</span>
+                  <span className="text-[7px] font-bold text-white/40 uppercase tracking-widest mt-0.5">MEMBER</span>
+               </div>
+               <div className="group relative w-16 h-14 bg-white/5 backdrop-blur-sm rounded-md flex flex-col items-center justify-center border border-white/10 hover:border-[#ffcc00]/50 transition-all duration-300 shadow-xl overflow-hidden">
+                  <span className="text-[10px] font-black tracking-wider text-[#ffcc00]">SAIS</span>
+                  <span className="text-[7px] font-bold text-white/40 uppercase tracking-widest mt-0.5">ACCREDITED</span>
+               </div>
              </div>
           </div>
         </div>
