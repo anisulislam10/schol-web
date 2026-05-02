@@ -49,9 +49,6 @@ export default async function DepartmentsPage() {
                   <div className="text-[10px] font-black uppercase tracking-widest text-[#002d56]">
                     HOD: <span className="text-[#17a2b8]">{dept.headName || 'N/A'}</span>
                   </div>
-                  <button className="text-[#ffcc00] font-black text-[10px] uppercase tracking-widest hover:text-[#002d56] transition-all">
-                    Learn More →
-                  </button>
                 </div>
               </div>
             </div>

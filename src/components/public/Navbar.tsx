@@ -146,26 +146,40 @@ export default function Navbar() {
             <X size={32} />
           </button>
           
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-2">
             {navLinks.map((link) => (
-              <div key={link.name} className="border-b border-white/10 pb-4">
-                <div className="flex justify-between items-center mb-4">
+              <div key={link.name} className="border-b border-white/5 py-4">
+                <div className="flex justify-between items-center">
                   <Link
                     href={link.href}
-                    className="text-white text-lg font-bold"
+                    className="text-white text-[20px] font-black uppercase tracking-tighter hover:text-[#ffcc00] transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {link.name}
                   </Link>
-                  {link.dropdown && <ChevronDown size={20} className="text-white/50" />}
+                  {link.dropdown && (
+                    <button 
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setActiveDropdown(activeDropdown === link.name ? null : link.name);
+                      }}
+                      className="p-2"
+                    >
+                      <ChevronDown 
+                        size={20} 
+                        className={`text-white/50 transition-transform ${activeDropdown === link.name ? 'rotate-180' : ''}`} 
+                      />
+                    </button>
+                  )}
                 </div>
-                {link.dropdown && (
-                  <div className="flex flex-col gap-4 pl-6">
+                
+                {link.dropdown && activeDropdown === link.name && (
+                  <div className="flex flex-col gap-5 mt-6 pl-4 animate-in slide-in-from-top-2 duration-200">
                     {link.dropdown.map((item) => (
                       <Link
-                        key={item.name}
+                        key={item.href}
                         href={item.href}
-                        className="text-white/70 text-sm font-medium hover:text-[#ffcc00]"
+                        className="text-white/60 text-[15px] font-bold uppercase tracking-wider hover:text-[#ffcc00] transition-colors"
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         {item.name}
@@ -175,13 +189,16 @@ export default function Navbar() {
                 )}
               </div>
             ))}
-            <Link
-              href="/admissions"
-              className="bg-[#ffcc00] text-[#002d56] px-12 py-4 rounded-md font-bold text-lg text-center mt-6"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              APPLY NOW
-            </Link>
+            
+            <div className="pt-8">
+              <Link
+                href="/admissions"
+                className="block bg-[#ffcc00] text-[#002d56] px-12 py-5 rounded-sm font-black text-lg text-center shadow-2xl hover:bg-white transition-all uppercase tracking-tighter"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Apply for Admission
+              </Link>
+            </div>
           </div>
         </div>
       )}

@@ -31,8 +31,8 @@ export async function POST() {
 
     // 0. Admin
     await Admin.create({
-      email: 'admin@ggc.edu',
-      password: 'admin123',
+      email: 'superadmin@ggcwpeshawarroad.edu.pk',
+      password: 'SUPERadmin@12345@123',
       name: 'Super Admin'
     });
 
