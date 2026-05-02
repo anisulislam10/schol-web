@@ -2,6 +2,12 @@ import dbConnect from '@/lib/db';
 import Program from '@/lib/models/Program';
 import Navbar from '@/components/public/Navbar';
 import Footer from '@/components/public/Footer';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Degree Programs',
+  description: 'Detailed overview of the professional degree programs offered at GGC Rawalpindi, including semester structures and career paths.',
+};
 
 export const runtime = 'nodejs';
 export const revalidate = 0;

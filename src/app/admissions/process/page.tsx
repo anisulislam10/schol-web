@@ -1,6 +1,12 @@
 import Navbar from '@/components/public/Navbar';
 import Footer from '@/components/public/Footer';
 import Link from 'next/link';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Admission Process',
+  description: 'A step-by-step guide on how to apply for admission at Govt. Graduate College. From obtaining forms to fee deposit and enrollment.',
+};
 
 export const runtime = 'nodejs';
 

@@ -1,6 +1,12 @@
 import Navbar from '@/components/public/Navbar';
 import Footer from '@/components/public/Footer';
 import Link from 'next/link';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Admission Criteria',
+  description: 'Find out if you are eligible to join GGC. Detailed qualification and merit criteria for all undergraduate and intermediate programs.',
+};
 
 export const runtime = 'nodejs';
 

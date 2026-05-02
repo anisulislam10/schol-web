@@ -3,6 +3,12 @@ import Fee from '@/lib/models/Fee';
 import Navbar from '@/components/public/Navbar';
 import Footer from '@/components/public/Footer';
 import { Download } from 'lucide-react';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Fee Structure',
+  description: 'Official fee structures for all intermediate and BS programs at Govt. Graduate College. Download the detailed fee breakdown for the current session.',
+};
 
 export const runtime = 'nodejs';
 export const revalidate = 0;

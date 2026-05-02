@@ -2,6 +2,12 @@ import dbConnect from '@/lib/db';
 import Department from '@/lib/models/Department';
 import Navbar from '@/components/public/Navbar';
 import Footer from '@/components/public/Footer';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Academic Departments',
+  description: 'Explore the various academic departments at Govt. Graduate College Rawalpindi. Find information about faculty, research, and specialized blocks.',
+};
 
 export const runtime = 'nodejs';
 export const revalidate = 0;

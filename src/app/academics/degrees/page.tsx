@@ -1,5 +1,11 @@
 import Navbar from '@/components/public/Navbar';
 import Footer from '@/components/public/Footer';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Our Degrees',
+  description: 'View our range of undergraduate BS programs and intermediate level certificates. Find the right path for your academic future at GGC.',
+};
 
 export const runtime = 'nodejs';
 
