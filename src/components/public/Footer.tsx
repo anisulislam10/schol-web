@@ -5,12 +5,39 @@ import { Mail, Phone, MapPin } from 'lucide-react';
 
 export default function Footer() {
   const footerLinks = [
-    { title: 'GIVING', links: ['Give Now', 'Ways to Give', 'College Fund', 'Endowment', 'Planned Giving'] },
-    { title: 'VISIT', links: ['Plan a Visit', 'Campus Map', 'Directions'] },
-    { title: 'ADMISSIONS', links: ['Apply Now', 'Request Info', 'Tuition & Financial Aid'] },
-    { title: 'ALUMNI', links: ['Alumni Weekend', 'Class Notes', 'Transcript Request'] },
-    { title: 'JOBS', links: ['Career Opportunities', 'Working at GGC'] },
-    { title: 'CONTACT', links: ['Directory', 'Faculty & Staff', 'Office of Admissions'] },
+    { 
+      title: 'EXPLORE GGC', 
+      links: [
+        { name: 'About Us', href: '/about' },
+        { name: 'Faculty', href: '/faculty' },
+        { name: 'Leadership', href: '/about/leadership' },
+        { name: 'Committees', href: '/about/committees' },
+        { name: 'News & Events', href: '/news' },
+        { name: 'Contact Us', href: '/contact' },
+      ] 
+    },
+    { 
+      title: 'ACADEMICS', 
+      links: [
+        { name: 'Programs', href: '/academics/programs' },
+        { name: 'Degrees', href: '/academics/degrees' },
+        { name: 'Departments', href: '/academics/departments' },
+        { name: 'Timetable', href: '/academics/timetable' },
+        { name: 'Results', href: '/academics/results' },
+        { name: 'Downloads', href: '/downloads' },
+      ] 
+    },
+    { 
+      title: 'ADMISSIONS', 
+      links: [
+        { name: 'Apply Now', href: '/admissions' },
+        { name: 'Admission Criteria', href: '/admissions/criteria' },
+        { name: 'Admission Process', href: '/admissions/process' },
+        { name: 'Fee Structure', href: '/admissions/fee' },
+        { name: 'Enrollment', href: '/admissions/enrollment' },
+        { name: 'Student Life', href: '/student-life' },
+      ] 
+    },
   ];
 
   const socialIcons = [
@@ -31,12 +58,12 @@ export default function Footer() {
                    <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="font-black text-xl leading-none tracking-tight uppercase">GOVT. GRADUATE COLLEGE</span>
-                  <span className="text-[11px] font-bold tracking-[0.2em] opacity-60 uppercase mt-1">Satellite Town, Rawalpindi</span>
+                  <span className="font-black text-xl leading-none tracking-tight uppercase">GGC FOR WOMEN</span>
+                  <span className="text-[11px] font-bold tracking-[0.2em] opacity-60 uppercase mt-1">Peshawar Road, Rawalpindi</span>
                 </div>
              </Link>
              <p className="text-white/50 text-sm leading-relaxed mb-10 max-w-xs font-medium">
-                Satellite Town, Rawalpindi <br />
+                Peshawar Road, Rawalpindi <br />
                 Punjab, Pakistan <br />
                 +92 (051) 1234567
              </p>
@@ -58,9 +85,9 @@ export default function Footer() {
                   <h4 className="text-[#ffcc00] font-black text-xs uppercase tracking-[0.2em] mb-6">{group.title}</h4>
                   <ul className="space-y-3">
                     {group.links.map((link) => (
-                      <li key={link}>
-                        <Link href="#" className="text-white/60 hover:text-white text-[13px] font-medium transition-colors">
-                          {link}
+                      <li key={link.name}>
+                        <Link href={link.href} className="text-white/60 hover:text-white text-[13px] font-medium transition-colors">
+                          {link.name}
                         </Link>
                       </li>
                     ))}
@@ -95,11 +122,11 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
-           <div className="text-white/40 text-[11px] font-bold uppercase tracking-widest">
-              © {new Date().getFullYear()} Govt. Graduate College, Satellite Town, Rawalpindi. All Rights Reserved.
+           <div className="text-white/40 text-[11px] font-bold uppercase tracking-widest text-center md:text-left">
+              © {new Date().getFullYear()} Govt. Graduate College for Women, Peshawar Road, Rawalpindi. All Rights Reserved.
            </div>
            <div className="flex gap-8 text-[11px] font-bold text-white/40 uppercase tracking-widest">
-              <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+              <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
               <Link href="/sitemap" className="hover:text-white transition-colors">Sitemap</Link>
               <Link href="/accessibility" className="hover:text-white transition-colors">Accessibility</Link>
            </div>

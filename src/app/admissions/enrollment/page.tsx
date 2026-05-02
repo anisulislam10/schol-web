@@ -18,7 +18,7 @@ export default function EnrollmentPage() {
       <section className="py-24 px-6 max-w-4xl mx-auto">
         <div className="prose prose-slate lg:prose-xl max-w-none text-slate-600 font-medium leading-relaxed prose-headings:text-[#002d56] prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter">
           <h2>Enrollment Statistics</h2>
-          <p>Govt. Graduate College, Satellite Town, Rawalpindi currently has a growing student body across multiple programs.</p>
+          <p>Govt. Graduate College, Peshawar Road, Rawalpindi  currently has a growing student body across multiple programs.</p>
           <table>
             <thead>
               <tr>

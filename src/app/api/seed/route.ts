@@ -62,7 +62,7 @@ export async function POST() {
       { slug: 'student-life', title: 'Student Life', content: '<p>Discover the vibrant campus life at GGC, including clubs, societies, and sports.</p>' },
       { slug: 'enrollment', title: 'Current Enrollment', content: '<p>Statistical overview of our current student body across all departments.</p>' },
       { slug: 'about-us', title: 'About GGC', content: '<p>Founded with a mission to provide quality education to the youth of Rawalpindi.</p>' },
-      { slug: 'contact-us', title: 'Contact Information', content: '<p>Visit us at Satellite Town, Rawalpindi or call us at +92 (051) 1234567.</p>' },
+      { slug: 'contact-us', title: 'Contact Information', content: '<p>Visit us at Peshawar Road, Rawalpindi  or call us at +92 (051) 1234567.</p>' },
       { slug: 'committees', title: 'Institute Committees', content: '<p>List of academic and administrative committees governing GGC.</p>' },
       { slug: 'leadership', title: 'Institute Leadership', content: '<p>Profiles of the Principal, Vice Principal, and HODs.</p>' },
       { slug: 'staff', title: 'Non-Teaching Staff', content: '<p>Management and supporting staff responsible for college operations.</p>' },

@@ -21,9 +21,9 @@ export interface ISettings extends Document {
 
 const SettingsSchema = new Schema<ISettings>(
   {
-    schoolName: { type: String, default: 'Govt. Graduate College, Satellite Town, Rawalpindi' },
+    schoolName: { type: String, default: 'Govt. Graduate College, Peshawar Road, Rawalpindi ' },
     tagline: { type: String, default: 'Excellence in Higher Education' },
-    address: { type: String, default: 'Satellite Town, Rawalpindi, Punjab, Pakistan' },
+    address: { type: String, default: 'Peshawar Road, Rawalpindi , Punjab, Pakistan' },
     phone: { type: String, default: '+92 (051) 1234567' },
     email: { type: String, default: 'info@ggcstr.edu.pk' },
     established: { type: String, default: '1995' },

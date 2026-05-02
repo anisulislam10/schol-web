@@ -53,7 +53,7 @@ export default function Chatbot() {
 
   const getBotResponse = (userInput: string) => {
     const tokens = userInput.toLowerCase().replace(/[^\w\s]/gi, '').split(/\s+/);
-    
+
     // Check for greetings
     const greetings = ['hi', 'hello', 'hey', 'greetings', 'morning', 'afternoon'];
     if (tokens.some(t => greetings.some(g => isFuzzyMatch(t, g))) && tokens.length <= 4) {
@@ -81,7 +81,7 @@ export default function Chatbot() {
       {
         intent: 'contact',
         keywords: ['contact', 'phone', 'email', 'reach', 'number', 'call', 'telephone'],
-        answer: "You can reach us at +92 (051) 1234567 or email info@ggcstr.edu.pk. We are located at Satellite Town, Rawalpindi."
+        answer: "You can reach us at +92 (051) 1234567 or email info@ggcstr.edu.pk. We are located at Peshawar Road, Rawalpindi ."
       },
       {
         intent: 'programs',
@@ -102,7 +102,7 @@ export default function Chatbot() {
       {
         intent: 'location',
         keywords: ['location', 'address', 'where', 'map', 'situated', 'located', 'find', 'place'],
-        answer: "We are located at Satellite Town, Rawalpindi, Punjab, Pakistan."
+        answer: "We are located at Peshawar Road, Rawalpindi , Punjab, Pakistan."
       },
       {
         intent: 'news',
@@ -116,7 +116,7 @@ export default function Chatbot() {
 
     for (const item of intents) {
       let score = 0;
-      
+
       const matchedKeywords = item.keywords.filter(kw => tokens.some(t => isFuzzyMatch(t, kw)));
       score += matchedKeywords.length;
 
@@ -165,7 +165,7 @@ export default function Chatbot() {
 
   if (!isOpen) {
     return (
-      <button 
+      <button
         onClick={() => { setIsOpen(true); setIsMinimized(false); }}
         className="fixed bottom-6 right-6 w-16 h-16 bg-[#ffcc00] text-[#002d56] rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform z-[9999]"
         aria-label="Open Chatbot"
@@ -223,8 +223,8 @@ export default function Chatbot() {
             placeholder="Ask a question..."
             className="w-full pl-4 pr-12 py-3 bg-slate-50 border border-slate-200 rounded-full focus:border-[#ffcc00] outline-none text-sm text-[#002d56]"
           />
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             disabled={!input.trim()}
             className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-[#002d56] text-[#ffcc00] rounded-full flex items-center justify-center hover:bg-[#002d56]/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >

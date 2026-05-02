@@ -3,8 +3,8 @@ import './globals.css';
 import Chatbot from '@/components/public/Chatbot';
 
 export const metadata: Metadata = {
-  title: 'Govt. Graduate College, Satellite Town, Rawalpindi — Excellence in Higher Education',
-  description: 'Govt. Graduate College, Satellite Town, Rawalpindi offers quality higher education with distinguished faculty and modern facilities. Admissions open.',
+  title: 'Govt. Graduate College, Peshawar Road, Rawalpindi  — Excellence in Higher Education',
+  description: 'Govt. Graduate College, Peshawar Road, Rawalpindi  offers quality higher education with distinguished faculty and modern facilities. Admissions open.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

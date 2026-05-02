@@ -43,9 +43,6 @@ export default async function ProgramsPage() {
                 <p className="text-slate-500 font-medium leading-relaxed line-clamp-3 mb-6">
                   {prog.shortDesc || prog.description || 'No description available.'}
                 </p>
-                <button className="text-[#002d56] font-black text-[10px] uppercase tracking-widest border-b-2 border-[#ffcc00] pb-1 hover:border-[#002d56] transition-all">
-                   Learn More
-                </button>
               </div>
             </div>
           ))}

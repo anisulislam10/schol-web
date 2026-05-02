@@ -18,7 +18,7 @@ export default function LeadershipPage() {
       <section className="py-24 px-6 max-w-4xl mx-auto">
         <div className="prose prose-slate lg:prose-xl max-w-none text-slate-600 font-medium leading-relaxed prose-headings:text-[#002d56] prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter">
           <h2>Our Leadership</h2>
-          <p>Govt. Graduate College, Satellite Town, Rawalpindi is led by dedicated and experienced educators committed to academic excellence.</p>
+          <p>Govt. Graduate College, Peshawar Road, Rawalpindi  is led by dedicated and experienced educators committed to academic excellence.</p>
           <h3>Principal</h3>
           <p>The Principal provides strategic vision and administrative leadership for the college, ensuring high standards of academic quality and institutional governance.</p>
           <h3>Vice Principal</h3>

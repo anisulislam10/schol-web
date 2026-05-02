@@ -28,7 +28,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-black text-[#002d56] uppercase text-sm tracking-widest mb-1">Address</h3>
-                  <p className="text-slate-500 font-medium leading-relaxed">Satellite Town, Rawalpindi<br />Punjab, Pakistan</p>
+                  <p className="text-slate-500 font-medium leading-relaxed">Peshawar Road, Rawalpindi <br />Punjab, Pakistan</p>
                 </div>
               </div>
               <div className="flex items-start gap-5">

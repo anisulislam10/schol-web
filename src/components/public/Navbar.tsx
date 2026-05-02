@@ -43,15 +43,20 @@ export default function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Prevent body scroll when menu is open
   useEffect(() => {
-    document.body.style.overflow = mobileMenuOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
   }, [mobileMenuOpen]);
 
   return (
@@ -62,7 +67,7 @@ export default function Navbar() {
         <div className={`hidden lg:block border-b border-white/10 pb-3 mb-3 transition-all ${scrolled ? 'h-0 opacity-0 overflow-hidden mb-0' : 'h-auto opacity-100'}`}>
           <div className="max-w-[1400px] mx-auto px-6 flex justify-between items-center text-[12px] font-medium text-white/80 tracking-wide">
             <div className="flex gap-8">
-              <span className="flex items-center gap-2"><MapPin size={14} className="text-[#ffcc00]" /> Satellite Town, Rawalpindi</span>
+              <span className="flex items-center gap-2"><MapPin size={14} className="text-[#ffcc00]" /> Peshawar Road, Rawalpindi </span>
               <span className="flex items-center gap-2"><Phone size={14} className="text-[#ffcc00]" /> +92 (051) 1234567</span>
               <span className="flex items-center gap-2"><Mail size={14} className="text-[#ffcc00]" /> info@ggcstr.edu.pk</span>
             </div>
@@ -80,8 +85,8 @@ export default function Navbar() {
               <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" />
             </div>
             <div className="flex flex-col text-white">
-              <span className="font-bold text-lg leading-tight tracking-tight">GOVT. GRADUATE COLLEGE</span>
-              <span className="text-[10px] font-semibold tracking-wide text-[#ffcc00] mt-0.5">SATELLITE TOWN, RAWALPINDI</span>
+              <span className="font-bold text-lg leading-tight tracking-tight uppercase">GGC FOR WOMEN</span>
+              <span className="text-[10px] font-semibold tracking-wide text-[#ffcc00] mt-0.5 uppercase">PESHAWAR ROAD, RAWALPINDI</span>
             </div>
           </Link>
 
@@ -133,12 +138,10 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* ===== MOBILE MENU — outside header to avoid stacking context issues ===== */}
+      {/* ===== MOBILE MENU ===== */}
       <div
         style={{ zIndex: 9999 }}
-        className={`fixed inset-0 bg-[#002d56] flex flex-col xl:hidden transition-transform duration-200 ease-in-out ${
-          mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
+        className={`fixed inset-0 bg-[#002d56] flex flex-col xl:hidden transition-transform duration-200 ease-in-out ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
       >
         {/* Top bar inside menu */}
         <div className="flex items-center justify-between p-5 border-b border-white/5">
@@ -146,7 +149,7 @@ export default function Navbar() {
             <div className="w-10 h-10 bg-white rounded-sm flex items-center justify-center p-1">
               <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" />
             </div>
-            <span className="text-white font-bold text-sm tracking-tight">GGC RAWALPINDI</span>
+            <span className="text-white font-bold text-sm tracking-tight uppercase">GGC FOR WOMEN, RWP</span>
           </Link>
           <button
             onClick={() => setMobileMenuOpen(false)}

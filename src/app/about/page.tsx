@@ -31,7 +31,7 @@ export default async function AboutPage() {
             Legacy Of <br /> Excellence
           </h1>
           <p className="text-lg md:text-xl text-white/90 font-medium leading-relaxed max-w-2xl px-4">
-            Established with the mission to provide quality higher education, Govt. Graduate College Satellite Town has been serving students from diverse backgrounds for decades.
+            Established with the mission to provide quality higher education, Govt. Graduate College for Women, Peshawar Road, Rawalpindi has been serving students from diverse backgrounds for decades.
           </p>
         </div>
       </section>
@@ -91,7 +91,7 @@ export default async function AboutPage() {
       <section className="py-32 bg-white px-6">
         <div className="max-w-[1400px] mx-auto">
           <div className="text-center mb-20">
-             <span className="text-[#17a2b8] font-bold text-xs uppercase tracking-[0.3em] block mb-4">Principles We Live By</span>
+             <span className="text-[#ffcc00] font-black text-xs uppercase tracking-[0.3em] block mb-4">6 Principles We Live By</span>
              <h2 className="text-4xl md:text-6xl font-black text-[#002d56] uppercase tracking-tighter">Core Values</h2>
           </div>
           
@@ -102,6 +102,7 @@ export default async function AboutPage() {
               { icon: Users, title: 'Inclusivity', desc: 'Providing equal opportunities, a welcoming campus, and a safe space for all students.' },
               { icon: Zap, title: 'Innovation', desc: 'Embracing modern teaching methodologies, technologies, and visionary strategies.' },
               { icon: Compass, title: 'Community Service', desc: 'Encouraging students to give back to society and develop strong moral responsibilities.' },
+              { icon: Target, title: 'Leadership', desc: 'Cultivating confident, ethical leaders who inspire positive change in society and the nation.' },
             ].map((val, i) => (
               <div key={i} className="group p-10 border border-slate-100 rounded-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 bg-slate-50 hover:bg-white text-center flex flex-col items-center">
                  <div className="w-20 h-20 rounded-full bg-white border border-slate-100 flex items-center justify-center text-[#17a2b8] mb-8 shadow-sm group-hover:scale-110 transition-transform duration-500 group-hover:text-[#002d56]">

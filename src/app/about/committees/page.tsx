@@ -18,7 +18,7 @@ export default function CommitteesPage() {
       <section className="py-24 px-6 max-w-4xl mx-auto">
         <div className="prose prose-slate lg:prose-xl max-w-none text-slate-600 font-medium leading-relaxed prose-headings:text-[#002d56] prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter">
           <h2>College Committees</h2>
-          <p>Govt. Graduate College, Satellite Town, Rawalpindi has constituted the following committees for the smooth functioning of the institution:</p>
+          <p>Govt. Graduate College, Peshawar Road, Rawalpindi  has constituted the following committees for the smooth functioning of the institution:</p>
           <h3>Discipline Committee</h3>
           <p>Responsible for maintaining discipline and code of conduct within the college premises.</p>
           <h3>Examination Committee</h3>

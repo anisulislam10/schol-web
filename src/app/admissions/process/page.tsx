@@ -91,7 +91,7 @@ export default function AdmissionProcessPage() {
             Admission<br />Process
           </h1>
           <p className="text-white/60 text-base font-medium max-w-lg mx-auto">
-            A simple, step-by-step guide to joining Govt. Graduate College, Satellite Town, Rawalpindi.
+            A simple, step-by-step guide to joining Govt. Graduate College, Peshawar Road, Rawalpindi .
           </p>
           <div className="w-24 h-1 bg-[#ffcc00] mx-auto mt-8" />
         </div>
