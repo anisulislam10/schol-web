@@ -4,6 +4,12 @@ import Navbar from '@/components/public/Navbar';
 import Footer from '@/components/public/Footer';
 import { Calendar, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'News & Events',
+  description: 'Stay updated with the latest news, announcements, and upcoming events from Govt. Graduate College. Read official notices and campus updates.',
+};
 
 export const runtime = 'nodejs';
 export const revalidate = 0;

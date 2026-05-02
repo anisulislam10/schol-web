@@ -2,6 +2,12 @@ import Navbar from '@/components/public/Navbar';
 import Footer from '@/components/public/Footer';
 import Link from 'next/link';
 import { Target, Eye, ShieldCheck, Zap, BookOpen, Users, Compass, ChevronRight } from 'lucide-react';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'About Us',
+  description: 'Learn about the legacy, mission, and vision of Govt. Graduate College. Our commitment to excellence in higher education has served students for decades.',
+};
 import dbConnect from '@/lib/db';
 import Settings from '@/lib/models/Settings';
 

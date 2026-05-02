@@ -5,6 +5,12 @@ import {
   Music, Camera, Trophy, Globe, Heart, 
   Users, Coffee, Laptop, BookOpen, Star 
 } from 'lucide-react';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Student Life',
+  description: 'Experience a vibrant campus life at GGC. Explore our student societies, sports facilities, arts and culture events, and innovation clubs.',
+};
 
 export const runtime = 'nodejs';
 

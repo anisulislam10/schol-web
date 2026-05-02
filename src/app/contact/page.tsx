@@ -2,6 +2,12 @@ import Navbar from '@/components/public/Navbar';
 import Footer from '@/components/public/Footer';
 import ContactForm from '@/components/public/ContactForm';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Contact Us',
+  description: 'Get in touch with Govt. Graduate College. Find our address, phone number, email, and office hours. Use our contact form to request information.',
+};
 
 export const runtime = 'nodejs';
 

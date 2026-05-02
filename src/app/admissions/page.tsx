@@ -4,6 +4,12 @@ import DynamicPage from '@/lib/models/DynamicPage';
 import Navbar from '@/components/public/Navbar';
 import Footer from '@/components/public/Footer';
 import Link from 'next/link';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Admissions',
+  description: 'Join the GGC family. Find information about current open admissions, application processes, and enrollment for Fall 2024.',
+};
 
 export const runtime = 'nodejs';
 export const revalidate = 0;

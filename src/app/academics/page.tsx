@@ -1,6 +1,12 @@
 import Navbar from '@/components/public/Navbar';
 import Footer from '@/components/public/Footer';
 import { BookOpen, Award, GraduationCap, ChevronRight, FileCheck, Target, ScrollText, CheckCircle2 } from 'lucide-react';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Academics',
+  description: 'Explore our academic programs, including BS degrees, Inter-Science (FSC), and co-curricular societies. GGC provides pathways to success for every student.',
+};
 
 export default function AcademicsPage() {
   const levels = [

@@ -5,8 +5,12 @@ import dbConnect from '@/lib/db';
 import Settings from '@/lib/models/Settings';
 
 export const metadata: Metadata = {
-  title: 'Govt. Graduate College, Peshawar Road, Rawalpindi  — Excellence in Higher Education',
-  description: 'Govt. Graduate College, Peshawar Road, Rawalpindi  offers quality higher education with distinguished faculty and modern facilities. Admissions open.',
+  title: {
+    default: 'Govt. Graduate College, Peshawar Road, Rawalpindi — Excellence in Higher Education',
+    template: '%s | Govt. Graduate College, Rawalpindi'
+  },
+  description: 'Govt. Graduate College, Peshawar Road, Rawalpindi offers quality higher education with distinguished faculty and modern facilities. Admissions open for various programs.',
+  keywords: ['Govt Graduate College', 'Rawalpindi College', 'Peshawar Road College', 'Higher Education Rawalpindi', 'BS Programs', 'Intermediate Admissions'],
 };
 
 async function getSettings() {

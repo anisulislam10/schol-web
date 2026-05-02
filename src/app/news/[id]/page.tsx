@@ -5,6 +5,16 @@ import Footer from '@/components/public/Footer';
 import { Calendar, Download, ArrowLeft, Clock, Share2, Tag } from 'lucide-react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const { id } = await params;
+  const notice = await getNotice(id);
+  return {
+    title: notice?.title || 'Notice Details',
+    description: notice?.description?.substring(0, 160) || 'Official notice from GGC Rawalpindi.',
+  };
+}
 
 export const runtime = 'nodejs';
 export const revalidate = 0;
