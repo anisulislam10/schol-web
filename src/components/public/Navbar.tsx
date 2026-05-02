@@ -138,6 +138,14 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="xl:hidden fixed inset-0 bg-[#002d56] z-[999] pt-24 px-6 overflow-y-auto pb-12">
+          {/* Mobile Close Button Inside Overlay */}
+          <button 
+            onClick={() => setMobileMenuOpen(false)}
+            className="absolute top-6 right-6 text-white/50 hover:text-white transition-colors"
+          >
+            <X size={32} />
+          </button>
+          
           <div className="flex flex-col gap-6">
             {navLinks.map((link) => (
               <div key={link.name} className="border-b border-white/10 pb-4">
