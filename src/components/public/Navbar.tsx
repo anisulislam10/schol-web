@@ -136,7 +136,7 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Menu Overlay */}
-      <div className={`xl:hidden fixed inset-0 bg-[#002d56] z-[2000] transition-all duration-500 flex flex-col ${mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+      <div className={`xl:hidden fixed inset-0 bg-[#002d56] z-[2000] transition-all duration-200 flex flex-col ${mobileMenuOpen ? 'opacity-100 pointer-events-auto scale-100' : 'opacity-0 pointer-events-none scale-95'}`}>
         {/* Header inside mobile menu */}
         <div className="flex items-center justify-between p-6 border-b border-white/5">
            <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3">
