@@ -209,13 +209,13 @@ export default function HomePage({ data }: { data: any }) {
               },
               { 
                 name: 'Dr. Maria Khan', 
-                img: 'https://images.unsplash.com/photo-1559839734-2b71f1536783?auto=format&fit=crop&q=80&w=400', 
+                img: 'https://i.pinimg.com/736x/02/48/d1/0248d190d33adf33287bf35c137b3ecf.jpg', 
                 role: 'Medical Resident at PIMS', 
                 quote: 'My years at GGC were transformative. The support of my teachers helped me clear my medical entrance exams with distinction.' 
               },
               { 
                 name: 'Ayesha Malik', 
-                img: 'https://images.unsplash.com/photo-1544717297-fa154da09f51?auto=format&fit=crop&q=80&w=400', 
+                img: 'https://t4.ftcdn.net/jpg/02/37/57/11/360_F_237571142_VA5kg8IaT9F7kaCXZ5K9vaQLbcYYioX4.jpg', 
                 role: 'Lecturer & Ph.D. Scholar', 
                 quote: 'The academic rigor at GGC prepared me for the challenges of higher research. I am proud to give back to the education system.' 
               },
