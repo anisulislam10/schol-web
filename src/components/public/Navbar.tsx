@@ -4,16 +4,6 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Menu, X, Search, ChevronDown, Phone, Mail, MapPin } from 'lucide-react';
 
-export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const navLinks = [
     { name: 'Home', href: '/' },
@@ -24,9 +14,6 @@ export default function Navbar() {
         { name: 'Departments', href: '/academics/departments' },
         { name: 'Degrees', href: '/academics/degrees' },
         { name: 'Degree Programs', href: '/academics/programs' },
-        // { name: 'Time Table', href: '/academics/timetable' },
-        // { name: 'Date Sheets', href: '/academics/datesheets' },
-        // { name: 'Examination Results', href: '/academics/results' },
       ]
     },
     {
@@ -36,8 +23,6 @@ export default function Navbar() {
         { name: 'Fee Structure', href: '/admissions/fee' },
         { name: 'Admission Criteria', href: '/admissions/criteria' },
         { name: 'Admission Process', href: '/admissions/process' },
-        // { name: 'Student Life', href: '/student-life' },
-        // { name: 'Current Enrollment', href: '/admissions/enrollment' },
       ]
     },
     { name: 'News & Events', href: '/news' },
@@ -49,162 +34,183 @@ export default function Navbar() {
         { name: 'About Us', href: '/about' },
         { name: 'Contact Us', href: '/contact' },
         { name: 'Faculty', href: '/faculty' },
-        // { name: 'Institute Committees', href: '/about/committees' },
-        // { name: 'Institute Leadership', href: '/about/leadership' },
-        // { name: 'Non Teaching Staff', href: '/about/staff' },
-        // { name: 'Institute Facilities', href: '/about/facilities' },
-        // { name: 'Vacancy Positions', href: '/about/vacancies' },
       ]
     },
   ];
 
-  return (
-    <header className={`fixed top-0 left-0 right-0 z-[1000] transition-all duration-300 font-sans ${scrolled ? 'bg-[#002d56] py-3 shadow-xl' : 'bg-[#002d56]/90 backdrop-blur-md py-4'}`}>
-      {/* Top Bar */}
-      <div className={`hidden lg:block border-b border-white/10 pb-3 mb-3 transition-all ${scrolled ? 'h-0 opacity-0 overflow-hidden mb-0' : 'h-auto opacity-100'}`}>
-        <div className="max-w-[1400px] mx-auto px-6 flex justify-between items-center text-[12px] font-medium text-white/80 tracking-wide">
-          <div className="flex gap-8">
-            <span className="flex items-center gap-2"><MapPin size={14} className="text-[#ffcc00]" /> Satellite Town, Rawalpindi</span>
-            <span className="flex items-center gap-2"><Phone size={14} className="text-[#ffcc00]" /> +92 (051) 1234567</span>
-            <span className="flex items-center gap-2"><Mail size={14} className="text-[#ffcc00]" /> info@ggcstr.edu.pk</span>
-          </div>
-          <div className="flex gap-6">
-            <Link href="/admin/login" className="hover:text-[#ffcc00] transition-colors">Admin Portal</Link>
-            <Link href="#" className="hover:text-[#ffcc00] transition-colors">LMS</Link>
-          </div>
-        </div>
-      </div>
+  export default function Navbar() {
+    const [scrolled, setScrolled] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
-      <div className="max-w-[1400px] mx-auto px-6 flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-4 group">
-          <div className="w-12 h-12 bg-white rounded-sm flex items-center justify-center p-1 shadow-lg group-hover:scale-105 transition-transform">
-            <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" />
-          </div>
-          <div className="flex flex-col text-white">
-            <span className="font-bold text-lg leading-tight tracking-tight">GOVT. GRADUATE COLLEGE</span>
-            <span className="text-[10px] font-semibold tracking-wide text-[#ffcc00] mt-0.5">SATELLITE TOWN, RAWALPINDI</span>
-          </div>
-        </Link>
+    useEffect(() => {
+      const handleScroll = () => {
+        // Use requestAnimationFrame for smoother scroll handling
+        let ticking = false;
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            setScrolled(window.scrollY > 50);
+            ticking = false;
+          });
+          ticking = true;
+        }
+      };
+      window.addEventListener('scroll', handleScroll);
+      return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
-        {/* Desktop Nav */}
-        <nav className="hidden xl:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <div
-              key={link.name}
-              className="relative group h-full flex items-center"
-              onMouseEnter={() => setActiveDropdown(link.name)}
-              onMouseLeave={() => setActiveDropdown(null)}
-            >
-              <Link
-                href={link.href}
-                className="text-white text-[14px] font-semibold tracking-wide flex items-center gap-1.5 hover:text-[#ffcc00] transition-all py-2"
-              >
-                {link.name} {link.dropdown && <ChevronDown size={14} className={`transition-transform duration-300 ${activeDropdown === link.name ? 'rotate-180' : ''}`} />}
-              </Link>
-
-              {/* Dropdown Menu */}
-              {link.dropdown && activeDropdown === link.name && (
-                <div className="absolute top-full left-0 mt-0 pt-4 w-64 animate-in fade-in slide-in-from-top-2 duration-200">
-                  <div className="bg-white rounded-md shadow-2xl overflow-hidden border-t-4 border-[#ffcc00]">
-                    {link.dropdown.map((item) => (
-                      <Link
-                        key={item.name}
-                        href={item.href}
-                        className="block px-6 py-4 text-[#002d56] text-[13px] font-medium hover:bg-slate-50 hover:text-[#ffcc00] transition-all border-b border-slate-50 last:border-0"
-                      >
-                        {item.name}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
+    return (
+      <header className={`fixed top-0 left-0 right-0 z-[1000] transition-all duration-300 font-sans ${scrolled ? 'bg-[#002d56] py-3 shadow-xl' : 'bg-[#002d56]/90 backdrop-blur-md py-4'}`}>
+        {/* Top Bar */}
+        <div className={`hidden lg:block border-b border-white/10 pb-3 mb-3 transition-all ${scrolled ? 'h-0 opacity-0 overflow-hidden mb-0' : 'h-auto opacity-100'}`}>
+          <div className="max-w-[1400px] mx-auto px-6 flex justify-between items-center text-[12px] font-medium text-white/80 tracking-wide">
+            <div className="flex gap-8">
+              <span className="flex items-center gap-2"><MapPin size={14} className="text-[#ffcc00]" /> Satellite Town, Rawalpindi</span>
+              <span className="flex items-center gap-2"><Phone size={14} className="text-[#ffcc00]" /> +92 (051) 1234567</span>
+              <span className="flex items-center gap-2"><Mail size={14} className="text-[#ffcc00]" /> info@ggcstr.edu.pk</span>
             </div>
-          ))}
-          <Link href="/admissions" className="bg-[#ffcc00] text-[#002d56] px-6 py-2.5 rounded-md font-bold text-sm hover:bg-white transition-all shadow-lg">
-            Apply Now
-          </Link>
-        </nav>
-
-        {/* Mobile Toggle */}
-        <button
-          className="xl:hidden text-white"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
-      </div>
-
-      {/* Mobile Menu Overlay */}
-      <div className={`xl:hidden fixed inset-0 bg-[#002d56] z-[2000] transition-all duration-200 flex flex-col ${mobileMenuOpen ? 'opacity-100 pointer-events-auto scale-100' : 'opacity-0 pointer-events-none scale-95'}`}>
-        {/* Header inside mobile menu */}
-        <div className="flex items-center justify-between p-6 border-b border-white/5">
-           <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-white rounded-sm flex items-center justify-center p-1">
-                <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" />
-              </div>
-              <span className="text-white font-bold text-sm tracking-tight">GGC RAWALPINDI</span>
-           </Link>
-           <button 
-             onClick={() => setMobileMenuOpen(false)}
-             className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-white"
-           >
-             <X size={28} />
-           </button>
+            <div className="flex gap-6">
+              <Link href="/admin/login" className="hover:text-[#ffcc00] transition-colors">Admin Portal</Link>
+              <Link href="#" className="hover:text-[#ffcc00] transition-colors">LMS</Link>
+            </div>
+          </div>
         </div>
 
-        {/* Links */}
-        <div className="flex-1 overflow-y-auto px-6 py-8">
-          <div className="flex flex-col gap-2">
+        <div className="max-w-[1400px] mx-auto px-6 flex items-center justify-between">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-4 group">
+            <div className="w-12 h-12 bg-white rounded-sm flex items-center justify-center p-1 shadow-lg group-hover:scale-105 transition-transform">
+              <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" />
+            </div>
+            <div className="flex flex-col text-white">
+              <span className="font-bold text-lg leading-tight tracking-tight">GOVT. GRADUATE COLLEGE</span>
+              <span className="text-[10px] font-semibold tracking-wide text-[#ffcc00] mt-0.5">SATELLITE TOWN, RAWALPINDI</span>
+            </div>
+          </Link>
+
+          {/* Desktop Nav */}
+          <nav className="hidden xl:flex items-center gap-8">
             {navLinks.map((link) => (
-              <div key={`mobile-${link.name}`} className="border-b border-white/5 last:border-0">
-                <div className="flex justify-between items-center py-4">
-                  <Link
-                    href={link.href}
-                    className="text-white text-xl font-black uppercase tracking-tighter hover:text-[#ffcc00] transition-colors"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {link.name}
-                  </Link>
-                  {link.dropdown && (
-                    <button 
-                      onClick={() => setActiveDropdown(activeDropdown === link.name ? null : link.name)}
-                      className={`p-2 transition-transform duration-300 ${activeDropdown === link.name ? 'rotate-180 text-[#ffcc00]' : 'text-white/30'}`}
-                    >
-                      <ChevronDown size={24} />
-                    </button>
-                  )}
-                </div>
-                
+              <div
+                key={link.name}
+                className="relative group h-full flex items-center"
+                onMouseEnter={() => setActiveDropdown(link.name)}
+                onMouseLeave={() => setActiveDropdown(null)}
+              >
+                <Link
+                  href={link.href}
+                  className="text-white text-[14px] font-semibold tracking-wide flex items-center gap-1.5 hover:text-[#ffcc00] transition-all py-2"
+                >
+                  {link.name} {link.dropdown && <ChevronDown size={14} className={`transition-transform duration-300 ${activeDropdown === link.name ? 'rotate-180' : ''}`} />}
+                </Link>
+
+                {/* Dropdown Menu */}
                 {link.dropdown && activeDropdown === link.name && (
-                  <div className="flex flex-col gap-5 pb-6 pl-4 animate-in fade-in slide-in-from-top-2 duration-300">
-                    {link.dropdown.map((item) => (
-                      <Link
-                        key={`mobile-sub-${item.name}`}
-                        href={item.href}
-                        className="text-white/60 text-[15px] font-bold uppercase tracking-wider hover:text-[#ffcc00] transition-colors"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        {item.name}
-                      </Link>
-                    ))}
+                  <div className="absolute top-full left-0 mt-0 pt-4 w-64 animate-in fade-in slide-in-from-top-2 duration-200">
+                    <div className="bg-white rounded-md shadow-2xl overflow-hidden border-t-4 border-[#ffcc00]">
+                      {link.dropdown.map((item) => (
+                        <Link
+                          key={item.name}
+                          href={item.href}
+                          className="block px-6 py-4 text-[#002d56] text-[13px] font-medium hover:bg-slate-50 hover:text-[#ffcc00] transition-all border-b border-slate-50 last:border-0"
+                        >
+                          {item.name}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>
             ))}
-          </div>
-          
-          <div className="mt-12">
-            <Link
-              href="/admissions"
-              className="block bg-[#ffcc00] text-[#002d56] py-5 rounded-sm font-black text-center shadow-xl hover:bg-white transition-all uppercase tracking-tighter text-lg"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Apply for Admission
+            <Link href="/admissions" className="bg-[#ffcc00] text-[#002d56] px-6 py-2.5 rounded-md font-bold text-sm hover:bg-white transition-all shadow-lg">
+              Apply Now
             </Link>
+          </nav>
+
+          {/* Mobile Toggle */}
+          <button
+            className="xl:hidden text-white"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
+
+        {/* Mobile Menu Overlay - High Performance Optimized */}
+        <div
+          className={`xl:hidden fixed inset-0 bg-[#002d56] z-[2000] will-change-transform will-change-opacity transition-all duration-[200ms] cubic-bezier(0.4, 0, 0.2, 1) flex flex-col ${mobileMenuOpen
+              ? 'translate-x-0 opacity-100 pointer-events-auto shadow-2xl'
+              : 'translate-x-full opacity-0 pointer-events-none'
+            }`}
+        >
+          {/* Header inside mobile menu */}
+          <div className="flex items-center justify-between p-6 border-b border-white/5">
+            <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-white rounded-sm flex items-center justify-center p-1">
+                <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" />
+              </div>
+              <span className="text-white font-bold text-sm tracking-tight">GGC RAWALPINDI</span>
+            </Link>
+            <button
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-white/10 transition-colors"
+            >
+              <X size={28} />
+            </button>
+          </div>
+
+          {/* Links */}
+          <div className="flex-1 overflow-y-auto px-6 py-8">
+            <div className="flex flex-col gap-2">
+              {navLinks.map((link) => (
+                <div key={`mobile-${link.name}`} className="border-b border-white/5 last:border-0">
+                  <div className="flex justify-between items-center py-4">
+                    <Link
+                      href={link.href}
+                      className="text-white text-xl font-black uppercase tracking-tighter hover:text-[#ffcc00] transition-colors"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {link.name}
+                    </Link>
+                    {link.dropdown && (
+                      <button
+                        onClick={() => setActiveDropdown(activeDropdown === link.name ? null : link.name)}
+                        className={`p-2 transition-transform duration-300 ${activeDropdown === link.name ? 'rotate-180 text-[#ffcc00]' : 'text-white/30'}`}
+                      >
+                        <ChevronDown size={24} />
+                      </button>
+                    )}
+                  </div>
+
+                  {link.dropdown && activeDropdown === link.name && (
+                    <div className="flex flex-col gap-5 pb-6 pl-4 animate-in fade-in slide-in-from-top-2 duration-300">
+                      {link.dropdown.map((item) => (
+                        <Link
+                          key={`mobile-sub-${item.name}`}
+                          href={item.href}
+                          className="text-white/60 text-[15px] font-bold uppercase tracking-wider hover:text-[#ffcc00] transition-colors"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          {item.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-12">
+              <Link
+                href="/admissions"
+                className="block bg-[#ffcc00] text-[#002d56] py-5 rounded-sm font-black text-center shadow-xl hover:bg-white transition-all uppercase tracking-tighter text-lg"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Apply for Admission
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
-    </header>
-  );
-}
+      </header>
+    );
+  }
