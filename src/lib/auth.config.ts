@@ -16,7 +16,10 @@ export const authConfig = {
         if (isLoggedIn) return true;
         return false; // Redirect to login
       } else if (isLoginPage && isLoggedIn) {
-        return Response.redirect(new URL('/admin', nextUrl));
+        const dest = nextUrl.clone();
+        dest.pathname = '/admin';
+        dest.search = '';
+        return Response.redirect(dest);
       }
       return true;
     },
