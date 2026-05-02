@@ -5,8 +5,8 @@ import { Mail, Phone, MapPin } from 'lucide-react';
 
 export default function Footer() {
   const footerLinks = [
-    { 
-      title: 'EXPLORE GGC', 
+    {
+      title: 'EXPLORE GGC',
       links: [
         { name: 'About Us', href: '/about' },
         { name: 'Faculty', href: '/faculty' },
@@ -14,10 +14,10 @@ export default function Footer() {
         { name: 'Committees', href: '/about/committees' },
         { name: 'News & Events', href: '/news' },
         { name: 'Contact Us', href: '/contact' },
-      ] 
+      ]
     },
-    { 
-      title: 'ACADEMICS', 
+    {
+      title: 'ACADEMICS',
       links: [
         { name: 'Programs', href: '/academics/programs' },
         { name: 'Degrees', href: '/academics/degrees' },
@@ -25,10 +25,10 @@ export default function Footer() {
         { name: 'Timetable', href: '/academics/timetable' },
         { name: 'Results', href: '/academics/results' },
         { name: 'Downloads', href: '/downloads' },
-      ] 
+      ]
     },
-    { 
-      title: 'ADMISSIONS', 
+    {
+      title: 'ADMISSIONS',
       links: [
         { name: 'Apply Now', href: '/admissions' },
         { name: 'Admission Criteria', href: '/admissions/criteria' },
@@ -36,7 +36,7 @@ export default function Footer() {
         { name: 'Fee Structure', href: '/admissions/fee' },
         { name: 'Enrollment', href: '/admissions/enrollment' },
         { name: 'Student Life', href: '/student-life' },
-      ] 
+      ]
     },
   ];
 
@@ -53,83 +53,83 @@ export default function Footer() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 pb-20">
           {/* Logo and Brand */}
           <div className="lg:col-span-4">
-             <Link href="/" className="flex items-center gap-4 mb-8 group">
-                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center p-3 shadow-2xl group-hover:rotate-12 transition-transform">
-                   <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" />
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-black text-xl leading-none tracking-tight uppercase">GGC FOR WOMEN</span>
-                  <span className="text-[11px] font-bold tracking-[0.2em] opacity-60 uppercase mt-1">Peshawar Road, Rawalpindi</span>
-                </div>
-             </Link>
-             <p className="text-white/50 text-sm leading-relaxed mb-10 max-w-xs font-medium">
-                Peshawar Road, Rawalpindi <br />
-                Punjab, Pakistan <br />
-                +92 (051) 1234567
-             </p>
-             <div className="flex gap-4">
-                {socialIcons.map((social, i) => (
-                  <Link key={i} href="#" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-[#ffcc00] hover:text-[#002d56] hover:border-[#ffcc00] transition-all">
-                    <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-                      <path d={social.path} />
-                    </svg>
-                  </Link>
-                ))}
-             </div>
+            <Link href="/" className="flex items-center gap-4 mb-8 group">
+              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center p-3 shadow-2xl group-hover:rotate-12 transition-transform">
+                <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" />
+              </div>
+              <div className="flex flex-col">
+                <span className="font-black text-xl leading-none tracking-tight uppercase">GGC FOR WOMEN</span>
+                <span className="text-[11px] font-bold tracking-[0.2em] opacity-60 uppercase mt-1">Peshawar Road, Rawalpindi</span>
+              </div>
+            </Link>
+            <p className="text-white/50 text-sm leading-relaxed mb-10 max-w-xs font-medium">
+              Peshawar Road, Rawalpindi <br />
+              Punjab, Pakistan <br />
+              +92 (051) 1234567
+            </p>
+            <div className="flex gap-4">
+              {socialIcons.map((social, i) => (
+                <Link key={i} href="#" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-[#ffcc00] hover:text-[#002d56] hover:border-[#ffcc00] transition-all">
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+                    <path d={social.path} />
+                  </svg>
+                </Link>
+              ))}
+            </div>
           </div>
 
           {/* Quick Links Grid */}
           <div className="lg:col-span-6 grid grid-cols-2 md:grid-cols-3 gap-y-12 gap-x-8">
-             {footerLinks.map((group) => (
-               <div key={group.title}>
-                  <h4 className="text-[#ffcc00] font-black text-xs uppercase tracking-[0.2em] mb-6">{group.title}</h4>
-                  <ul className="space-y-3">
-                    {group.links.map((link) => (
-                      <li key={link.name}>
-                        <Link href={link.href} className="text-white/60 hover:text-white text-[13px] font-medium transition-colors">
-                          {link.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-               </div>
-             ))}
+            {footerLinks.map((group) => (
+              <div key={group.title}>
+                <h4 className="text-[#ffcc00] font-black text-xs uppercase tracking-[0.2em] mb-6">{group.title}</h4>
+                <ul className="space-y-3">
+                  {group.links.map((link) => (
+                    <li key={link.name}>
+                      <Link href={link.href} className="text-white/60 hover:text-white text-[13px] font-medium transition-colors">
+                        {link.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
 
           {/* Accreditations */}
           <div className="lg:col-span-2 flex flex-col items-center lg:items-end gap-5">
-             <h4 className="text-[#ffcc00] font-black text-[10px] uppercase tracking-[0.3em] opacity-80 self-start lg:self-end">Accreditations</h4>
+            <h4 className="text-[#ffcc00] font-black text-[10px] uppercase tracking-[0.3em] opacity-80 self-start lg:self-end">Accreditations</h4>
 
-             {/* HEC Logo */}
-             <div className="group w-28 h-24 bg-white rounded-lg flex items-center justify-center border border-white/10 hover:border-[#ffcc00]/60 hover:shadow-[0_0_20px_rgba(255,204,0,0.15)] transition-all duration-300 p-2 shadow-xl">
-                <img
-                  src="https://www.hec.gov.pk/SiteAssets/higher-education-commission-pakistan-logo.png"
-                  alt="HEC - Higher Education Commission Pakistan"
-                  className="w-full h-full object-contain"
-                />
-             </div>
+            {/* HEC Logo */}
+            <div className="group w-28 h-24 bg-white rounded-lg flex items-center justify-center border border-white/10 hover:border-[#ffcc00]/60 hover:shadow-[0_0_20px_rgba(255,204,0,0.15)] transition-all duration-300 p-2 shadow-xl">
+              <img
+                src="https://www.hec.gov.pk/SiteAssets/higher-education-commission-pakistan-logo.png"
+                alt="HEC - Higher Education Commission Pakistan"
+                className="w-full h-full object-contain"
+              />
+            </div>
 
-             {/* BISE Rawalpindi Logo */}
-             <div className="group w-28 h-24 bg-white rounded-lg flex items-center justify-center border border-white/10 hover:border-[#ffcc00]/60 hover:shadow-[0_0_20px_rgba(255,204,0,0.15)] transition-all duration-300 p-2 shadow-xl">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/en/2/20/BISE_Rawalpindi_logo.png"
-                  alt="BISE Rawalpindi"
-                  className="w-full h-full object-contain"
-                />
-             </div>
+            {/* BISE Rawalpindi Logo */}
+            <div className="group w-28 h-24 bg-white rounded-lg flex items-center justify-center border border-white/10 hover:border-[#ffcc00]/60 hover:shadow-[0_0_20px_rgba(255,204,0,0.15)] transition-all duration-300 p-2 shadow-xl">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/en/2/20/BISE_Rawalpindi_logo.png"
+                alt="BISE Rawalpindi"
+                className="w-full h-full object-contain"
+              />
+            </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
-           <div className="text-white/40 text-[11px] font-bold uppercase tracking-widest text-center md:text-left">
-              © {new Date().getFullYear()} Govt. Graduate College for Women, Peshawar Road, Rawalpindi. All Rights Reserved.
-           </div>
-           <div className="flex gap-8 text-[11px] font-bold text-white/40 uppercase tracking-widest">
-              <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
-              <Link href="/sitemap" className="hover:text-white transition-colors">Sitemap</Link>
-              <Link href="/accessibility" className="hover:text-white transition-colors">Accessibility</Link>
-           </div>
+          <div className="text-white/40 text-[11px] font-bold uppercase tracking-widest text-center md:text-left">
+            © {new Date().getFullYear()} Govt. Graduate College for Women, Peshawar Road, Rawalpindi. All Rights Reserved.
+          </div>
+          <div className="flex gap-8 text-[11px] font-bold text-white/40 uppercase tracking-widest">
+            <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
+            <Link href="/sitemap" className="hover:text-white transition-colors">Sitemap</Link>
+            <Link href="/accessibility" className="hover:text-white transition-colors">Accessibility</Link>
+          </div>
         </div>
       </div>
     </footer>

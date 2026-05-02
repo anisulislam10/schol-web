@@ -94,8 +94,8 @@ export default function HomePage({ data }: { data: any }) {
               key={index}
               onClick={() => setCurrentSlide(index)}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${currentSlide === index
-                  ? 'bg-[#ffcc00] scale-125'
-                  : 'bg-white/50 hover:bg-white/80'
+                ? 'bg-[#ffcc00] scale-125'
+                : 'bg-white/50 hover:bg-white/80'
                 }`}
             />
           ))}
