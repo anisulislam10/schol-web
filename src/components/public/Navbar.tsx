@@ -13,6 +13,7 @@ const navLinks = [
       { name: 'Departments', href: '/academics/departments' },
       { name: 'Degrees', href: '/academics/degrees' },
       { name: 'Degree Programs', href: '/academics/programs' },
+      { name: 'Student Life', href: '/student-life' },
     ]
   },
   {
@@ -31,8 +32,10 @@ const navLinks = [
     href: '/about',
     dropdown: [
       { name: 'About Us', href: '/about' },
-      { name: 'Contact Us', href: '/contact' },
       { name: 'Faculty', href: '/faculty' },
+      { name: 'Student Life', href: '/student-life' },
+      { name: 'Enrollment', href: '/admissions/enrollment' },
+      { name: 'Contact Us', href: '/contact' },
     ]
   },
 ];

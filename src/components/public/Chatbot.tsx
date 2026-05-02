@@ -19,10 +19,7 @@ export default function Chatbot() {
   const [input, setInput] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Hide on admin routes
-  if (pathname?.startsWith('/admin') || pathname?.startsWith('/login')) {
-    return null;
-  }
+  // Moved early return check down to render section to follow Rules of Hooks
 
   const levenshtein = (a: string, b: string) => {
     if (a.length === 0) return b.length;
@@ -162,6 +159,11 @@ export default function Chatbot() {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   }, [messages, isOpen, isMinimized]);
+
+  // Early return for admin routes after all hooks
+  if (pathname?.startsWith('/admin') || pathname?.startsWith('/login')) {
+    return null;
+  }
 
   if (!isOpen) {
     return (

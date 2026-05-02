@@ -243,9 +243,9 @@ export default function HomePage({ data }: { data: any }) {
                   <p className="text-slate-500 text-[11px] font-medium mb-8 flex-grow line-clamp-3 leading-relaxed">
                     {notice.content}
                   </p>
-                  <button className="text-[#002d56] font-black text-[10px] uppercase tracking-[0.2em] flex items-center gap-2 hover:gap-4 transition-all border-b border-[#002d56] pb-1 w-fit">
+                  <Link href={`/news/${notice._id}`} className="text-[#002d56] font-black text-[10px] uppercase tracking-[0.2em] flex items-center gap-2 hover:gap-4 transition-all border-b border-[#002d56] pb-1 w-fit">
                     READ STORY
-                  </button>
+                  </Link>
                 </div>
               </div>
             ))}

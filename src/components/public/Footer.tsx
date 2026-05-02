@@ -10,8 +10,6 @@ export default function Footer() {
       links: [
         { name: 'About Us', href: '/about' },
         { name: 'Faculty', href: '/faculty' },
-        { name: 'Leadership', href: '/about/leadership' },
-        { name: 'Committees', href: '/about/committees' },
         { name: 'News & Events', href: '/news' },
         { name: 'Contact Us', href: '/contact' },
       ]
@@ -22,8 +20,6 @@ export default function Footer() {
         { name: 'Programs', href: '/academics/programs' },
         { name: 'Degrees', href: '/academics/degrees' },
         { name: 'Departments', href: '/academics/departments' },
-        { name: 'Timetable', href: '/academics/timetable' },
-        { name: 'Results', href: '/academics/results' },
         { name: 'Downloads', href: '/downloads' },
       ]
     },
