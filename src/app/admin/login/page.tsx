@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { GraduationCap, Lock, Mail, Loader2, Eye, EyeOff } from 'lucide-react';
 
 export default function AdminLoginPage() {
@@ -12,6 +12,8 @@ export default function AdminLoginPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get('callbackUrl');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,7 +30,7 @@ export default function AdminLoginPage() {
       if (res?.error) {
         setError('Invalid email or password');
       } else {
-        window.location.href = '/admin';
+        window.location.href = callbackUrl || '/admin';
       }
     } catch (err) {
       setError('An error occurred. Please try again.');
