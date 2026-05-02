@@ -7,7 +7,8 @@ export const authConfig = {
   },
   session: { strategy: 'jwt' },
   callbacks: {
-    async authorized({ auth, request: { nextUrl } }) {
+    async authorized({ auth, request }) {
+      const { nextUrl } = request;
       const isLoggedIn = !!auth?.user;
       const isAdminPath = nextUrl.pathname.startsWith('/admin');
       const isLoginPage = nextUrl.pathname === '/admin/login';
@@ -16,10 +17,8 @@ export const authConfig = {
         if (isLoggedIn) return true;
         return false; // Redirect to login
       } else if (isLoginPage && isLoggedIn) {
-        const dest = nextUrl.clone();
-        dest.pathname = '/admin';
-        dest.search = '';
-        return Response.redirect(dest);
+        // Redirect to /admin using the current origin from nextUrl
+        return Response.redirect(new URL('/admin', nextUrl.origin));
       }
       return true;
     },

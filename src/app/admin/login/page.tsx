@@ -13,24 +13,7 @@ function LoginForm() {
   const [error, setError] = useState('');
   const router = useRouter();
   const searchParams = useSearchParams();
-  const rawCallbackUrl = searchParams.get('callbackUrl');
-  
-  // Normalize callbackUrl to relative path to avoid localhost issues in prod
-  let callbackUrl = '/admin';
-  if (rawCallbackUrl) {
-    try {
-      const url = new URL(rawCallbackUrl);
-      if (typeof window !== 'undefined' && url.origin === window.location.origin) {
-        callbackUrl = url.pathname + url.search;
-      } else if (rawCallbackUrl.startsWith('/')) {
-        callbackUrl = rawCallbackUrl;
-      }
-    } catch (e) {
-      if (rawCallbackUrl.startsWith('/')) {
-        callbackUrl = rawCallbackUrl;
-      }
-    }
-  }
+  const callbackUrl = searchParams.get('callbackUrl') || '/admin';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,7 +24,7 @@ function LoginForm() {
       await signIn('credentials', {
         email,
         password,
-        redirectTo: callbackUrl || '/admin',
+        redirectTo: callbackUrl,
       });
     } catch (err) {
       setError('Invalid email or password');
