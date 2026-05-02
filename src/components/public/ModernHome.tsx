@@ -201,20 +201,39 @@ export default function HomePage({ data }: { data: any }) {
           <div className="text-[#17a2b8] font-bold uppercase tracking-widest mb-20 text-sm">Full Admission Profile 2023</div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
             {[
-              { name: 'University of Chicago', img: 'https://brand.uchicago.edu/images/primary-logo-reversed.png' },
-              { name: 'Stanford University', img: 'https://identity.stanford.edu/wp-content/uploads/sites/3/2020/06/stanford-logo.png' },
-              { name: 'Oxford University', img: 'https://www.ox.ac.uk/sites/default/files/styles/image_col_3/public/oxford_logo.png' },
-            ].map((uni, i) => (
-              <div key={i} className="flex flex-col items-center gap-8 grayscale hover:grayscale-0 transition-all cursor-pointer">
-                <div className="h-40 flex items-center justify-center">
-                  {/* Placeholder for Uni Logo */}
-                  <div className="w-32 h-32 bg-slate-100 rounded-full flex items-center justify-center font-black text-[#002d56] text-xl border-4 border-[#002d56]">
-                    UNI {i + 1}
+              { 
+                name: 'Sana Ahmed', 
+                img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400', 
+                role: 'Senior Software Engineer', 
+                quote: 'The CS department at GGC gave me the foundation to compete globally. Today, I am leading engineering teams in a top tech firm.' 
+              },
+              { 
+                name: 'Dr. Maria Khan', 
+                img: 'https://images.unsplash.com/photo-1559839734-2b71f1536783?auto=format&fit=crop&q=80&w=400', 
+                role: 'Medical Resident at PIMS', 
+                quote: 'My years at GGC were transformative. The support of my teachers helped me clear my medical entrance exams with distinction.' 
+              },
+              { 
+                name: 'Ayesha Malik', 
+                img: 'https://images.unsplash.com/photo-1544717297-fa154da09f51?auto=format&fit=crop&q=80&w=400', 
+                role: 'Lecturer & Ph.D. Scholar', 
+                quote: 'The academic rigor at GGC prepared me for the challenges of higher research. I am proud to give back to the education system.' 
+              },
+            ].map((graduate, i) => (
+              <div key={i} className="flex flex-col items-center gap-6 group cursor-pointer">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-[#ffcc00] rounded-full translate-x-1 translate-y-1 z-0 transition-transform group-hover:translate-x-2 group-hover:translate-y-2" />
+                  <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-[#002d56] relative z-10">
+                    <img src={graduate.img} alt={graduate.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                   </div>
                 </div>
-                <p className="text-slate-400 text-sm font-bold max-w-xs leading-relaxed">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
+                <div className="text-center">
+                  <h3 className="text-[#002d56] font-black text-xl uppercase tracking-tighter">{graduate.name}</h3>
+                  <div className="text-[#17a2b8] font-bold text-[10px] uppercase tracking-widest mb-4">{graduate.role}</div>
+                  <p className="text-slate-500 text-sm italic font-medium max-w-xs leading-relaxed">
+                    "{graduate.quote}"
+                  </p>
+                </div>
               </div>
             ))}
           </div>
