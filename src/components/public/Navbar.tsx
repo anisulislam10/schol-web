@@ -75,7 +75,7 @@ export default function Navbar() {
               <span className="flex items-center gap-2"><Mail size={14} className="text-[#ffcc00]" /> info@ggcstr.edu.pk</span>
             </div>
             <div className="flex gap-6">
-              <Link href="/admin/login" className="hover:text-[#ffcc00] transition-colors">Admin Portal</Link>
+              <Link href="/admin/login" target="_blank" rel="noopener noreferrer" className="hover:text-[#ffcc00] transition-colors">Admin Portal</Link>
               <Link href="#" className="hover:text-[#ffcc00] transition-colors">LMS</Link>
             </div>
           </div>
