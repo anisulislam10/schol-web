@@ -21,19 +21,13 @@ function LoginForm() {
     setError('');
 
     try {
-      const res = await signIn('credentials', {
+      await signIn('credentials', {
         email,
         password,
-        redirect: false,
+        redirectTo: callbackUrl || '/admin',
       });
-
-      if (res?.error) {
-        setError('Invalid email or password');
-      } else {
-        window.location.href = callbackUrl || '/admin';
-      }
     } catch (err) {
-      setError('An error occurred. Please try again.');
+      setError('Invalid email or password');
     } finally {
       setLoading(false);
     }
