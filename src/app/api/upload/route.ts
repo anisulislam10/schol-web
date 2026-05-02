@@ -3,6 +3,18 @@ import cloudinary from '@/lib/cloudinary';
 
 export async function POST(req: NextRequest) {
   try {
+    // Check for required environment variables
+    const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
+    const apiKey = process.env.CLOUDINARY_API_KEY;
+    const apiSecret = process.env.CLOUDINARY_API_SECRET;
+
+    if (!cloudName || !apiKey || !apiSecret) {
+      console.error('Missing Cloudinary environment variables');
+      return NextResponse.json({ 
+        error: 'Cloudinary configuration is incomplete. Please check your environment variables.' 
+      }, { status: 500 });
+    }
+
     const formData = await req.formData();
     const file = formData.get('file') as File | null;
     
@@ -15,21 +27,31 @@ export async function POST(req: NextRequest) {
 
     // Upload to Cloudinary using a promise to handle the stream
     const result = await new Promise((resolve, reject) => {
-      cloudinary.uploader.upload_stream(
+      const uploadStream = cloudinary.uploader.upload_stream(
         {
           resource_type: 'auto',
           folder: 'school-web-gallery',
         },
         (error, result) => {
-          if (error) reject(error);
-          else resolve(result);
+          if (error) {
+            console.error('Cloudinary callback error:', error);
+            reject(error);
+          } else {
+            resolve(result);
+          }
         }
-      ).end(buffer);
+      );
+      
+      uploadStream.end(buffer);
     }) as any;
     
+    console.log('Upload successful:', result.secure_url);
     return NextResponse.json({ url: result.secure_url });
-  } catch (error) {
-    console.error('Upload error:', error);
-    return NextResponse.json({ error: 'Upload failed' }, { status: 500 });
+  } catch (error: any) {
+    console.error('Comprehensive upload error:', error);
+    return NextResponse.json({ 
+      error: 'Upload failed', 
+      details: error.message || 'Unknown error' 
+    }, { status: 500 });
   }
 }

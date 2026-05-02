@@ -34,9 +34,12 @@ export default function AddGalleryModal({ onAdd }: { onAdd: (formData: FormData)
       const data = await res.json();
       if (data.url) {
         setImageUrl(data.url);
+      } else {
+        alert(data.error || "Upload failed. Please check your configuration.");
       }
     } catch (err) {
       console.error(err);
+      alert("A network error occurred during upload.");
     }
   };
 
