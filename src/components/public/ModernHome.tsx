@@ -38,7 +38,7 @@ export default function HomePage({ data }: { data: any }) {
   const goToNext = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
 
   return (
-    <div className="bg-white font-sans">
+    <div className="bg-white font-sans overflow-x-hidden">
       <Navbar />
 
       {/* 1. HERO SLIDER SECTION */}
@@ -60,7 +60,7 @@ export default function HomePage({ data }: { data: any }) {
         ))}
 
         <div className="relative z-10 max-w-5xl px-6 text-white">
-          <h1 className="text-6xl md:text-8xl font-black mb-8 leading-[1.1] tracking-tight uppercase">
+          <h1 className="text-4xl sm:text-6xl lg:text-8xl font-black mb-8 leading-[1.1] tracking-tight uppercase">
             Building Confidence <br /> Through Support
           </h1>
           <div className="flex justify-center gap-6 mt-12">
@@ -138,17 +138,17 @@ export default function HomePage({ data }: { data: any }) {
               <Link href="/service" className="inline-block bg-[#ffcc00] text-[#002d56] px-8 py-3 rounded-sm font-black text-xs uppercase tracking-widest mb-16 hover:bg-white transition-all">
                 LEARN MORE
               </Link>
-              <div className="grid grid-cols-3 gap-8 text-center">
-                <div>
-                  <div className="text-6xl font-black mb-2 tracking-tighter">{settings?.totalStudents || '1200'}+</div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center mt-12 px-4">
+                <div className="bg-white/10 p-6 rounded-sm border border-white/5 backdrop-blur-sm sm:bg-transparent sm:p-0 sm:border-0 sm:backdrop-blur-none">
+                  <div className="text-4xl sm:text-5xl lg:text-6xl font-black mb-2 tracking-tighter">{settings?.totalStudents || '1200'}+</div>
                   <div className="text-[10px] font-bold uppercase tracking-widest opacity-80 leading-relaxed">Active Students <br /> Enrolled Currently</div>
                 </div>
-                <div>
-                  <div className="text-6xl font-black mb-2 tracking-tighter">{settings?.totalTeachers || '65'}+</div>
+                <div className="bg-white/10 p-6 rounded-sm border border-white/5 backdrop-blur-sm sm:bg-transparent sm:p-0 sm:border-0 sm:backdrop-blur-none">
+                  <div className="text-4xl sm:text-5xl lg:text-6xl font-black mb-2 tracking-tighter">{settings?.totalTeachers || '65'}+</div>
                   <div className="text-[10px] font-bold uppercase tracking-widest opacity-80 leading-relaxed">Qualified Faculty <br /> Members</div>
                 </div>
-                <div>
-                  <div className="text-6xl font-black mb-2 tracking-tighter">{settings?.passRate || '98'}%</div>
+                <div className="bg-white/10 p-6 rounded-sm border border-white/5 backdrop-blur-sm sm:bg-transparent sm:p-0 sm:border-0 sm:backdrop-blur-none">
+                  <div className="text-4xl sm:text-5xl lg:text-6xl font-black mb-2 tracking-tighter">{settings?.passRate || '98'}%</div>
                   <div className="text-[10px] font-bold uppercase tracking-widest opacity-80 leading-relaxed">Success Rate <br /> in Board Exams</div>
                 </div>
               </div>
@@ -156,10 +156,10 @@ export default function HomePage({ data }: { data: any }) {
             <div className="relative">
               <img
                 src="/ethics.webp"
-                className="w-full h-[500px] object-cover rounded-sm shadow-2xl"
+                className="w-full h-[300px] sm:h-[500px] object-cover rounded-sm shadow-2xl"
                 alt="Ethics and Character Building"
               />
-              <div className="absolute -bottom-10 -left-10 w-40 h-40 border-[10px] border-white/20" />
+              <div className="absolute -bottom-10 -left-10 w-20 h-20 sm:w-40 sm:h-40 border-[10px] border-white/20" />
             </div>
           </div>
         </div>
@@ -167,16 +167,16 @@ export default function HomePage({ data }: { data: any }) {
 
 
       {/* 5. OPPORTUNITIES SECTION */}
-      <section className="relative py-40 overflow-hidden bg-[#002d56]">
+      <section className="relative py-24 sm:py-40 overflow-hidden bg-[#002d56]">
         <div className="absolute inset-0">
           <img src="https://images.unsplash.com/photo-1541339907198-e08759dfc3ef?auto=format&fit=crop&q=80&w=1920" className="w-full h-full object-cover opacity-60" alt="Graduation" />
           <div className="absolute inset-0 bg-[#002d56]/60" />
         </div>
-        <div className="max-w-[1400px] mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+        <div className="max-w-[1400px] mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="text-white">
             <span className="text-[#ffcc00] font-black text-sm uppercase tracking-widest block mb-6">Success</span>
-            <h2 className="text-5xl md:text-7xl font-black mb-8 uppercase tracking-tighter leading-none">We Provide <br /> Opportunities <br /> to Succeed</h2>
-            <p className="text-xl text-white/80 leading-relaxed font-medium mb-12 max-w-xl">
+            <h2 className="text-4xl sm:text-5xl md:text-7xl font-black mb-8 uppercase tracking-tighter leading-none">We Provide <br /> Opportunities <br /> to Succeed</h2>
+            <p className="text-lg sm:text-xl text-white/80 leading-relaxed font-medium mb-12 max-w-xl">
               At Govt. Graduate College, students excel in academics and co-curricular activities while developing the skills to succeed in higher education and beyond.
             </p>
             <Link href="/success" className="bg-[#ffcc00] text-[#002d56] px-10 py-4 rounded-sm font-black text-xs uppercase tracking-widest hover:bg-white transition-all">
@@ -195,11 +195,11 @@ export default function HomePage({ data }: { data: any }) {
       </section>
 
       {/* 6. GRADUATES SECTION */}
-      <section className="py-32 bg-white">
+      <section className="py-24 sm:py-32 bg-white overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-6 text-center">
-          <h2 className="text-4xl md:text-5xl font-black text-[#002d56] mb-4 uppercase tracking-tighter">Our Graduates Are Following Their Dreams</h2>
-          <div className="text-[#17a2b8] font-bold uppercase tracking-widest mb-20 text-sm">Full Admission Profile 2023</div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#002d56] mb-4 uppercase tracking-tighter">Our Graduates Are Following Their Dreams</h2>
+          <div className="text-[#17a2b8] font-bold uppercase tracking-widest mb-16 text-xs sm:text-sm">Full Admission Profile 2023</div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 sm:gap-16">
             {[
               { 
                 name: 'Sana Ahmed', 
@@ -230,17 +230,12 @@ export default function HomePage({ data }: { data: any }) {
                 <div className="text-center">
                   <h3 className="text-[#002d56] font-black text-xl uppercase tracking-tighter">{graduate.name}</h3>
                   <div className="text-[#17a2b8] font-bold text-[10px] uppercase tracking-widest mb-4">{graduate.role}</div>
-                  <p className="text-slate-500 text-sm italic font-medium max-w-xs leading-relaxed">
+                  <p className="text-slate-500 text-sm italic font-medium max-w-xs leading-relaxed mx-auto">
                     "{graduate.quote}"
                   </p>
                 </div>
               </div>
             ))}
-          </div>
-          {/* Slider Controls */}
-          <div className="mt-20 flex justify-center gap-4">
-            <button className="w-10 h-10 border-2 border-slate-200 rounded-full flex items-center justify-center hover:bg-slate-100 transition-all"><ChevronLeft size={20} /></button>
-            <button className="w-10 h-10 border-2 border-slate-200 rounded-full flex items-center justify-center hover:bg-slate-100 transition-all"><ChevronRight size={20} /></button>
           </div>
         </div>
       </section>

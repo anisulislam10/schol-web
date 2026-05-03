@@ -94,10 +94,11 @@ export default function Footer() {
 
           {/* Accreditations */}
           <div className="lg:col-span-2 flex flex-col items-center lg:items-end gap-5">
-            <h4 className="text-[#ffcc00] font-black text-[10px] uppercase tracking-[0.3em] opacity-80 self-start lg:self-end">Accreditations</h4>
+            <h4 className="text-[#ffcc00] font-black text-[10px] uppercase tracking-[0.3em] opacity-80 self-center lg:self-end">Accreditations</h4>
 
-            {/* HEC Logo */}
-            <div className="group w-28 h-24 bg-white rounded-lg flex items-center justify-center border border-white/10 hover:border-[#ffcc00]/60 hover:shadow-[0_0_20px_rgba(255,204,0,0.15)] transition-all duration-300 p-2 shadow-xl">
+            <div className="flex flex-row gap-4 justify-center">
+              {/* HEC Logo */}
+              <div className="group w-24 h-20 bg-white rounded-lg flex items-center justify-center border border-white/10 hover:border-[#ffcc00]/60 hover:shadow-[0_0_20px_rgba(255,204,0,0.15)] transition-all duration-300 p-2 shadow-xl">
               <img
                 src="https://www.hec.gov.pk/SiteAssets/higher-education-commission-pakistan-logo.png"
                 alt="HEC - Higher Education Commission Pakistan"
@@ -105,13 +106,14 @@ export default function Footer() {
               />
             </div>
 
-            {/* BISE Rawalpindi Logo */}
-            <div className="group w-28 h-24 bg-white rounded-lg flex items-center justify-center border border-white/10 hover:border-[#ffcc00]/60 hover:shadow-[0_0_20px_rgba(255,204,0,0.15)] transition-all duration-300 p-2 shadow-xl">
-              <img
-                src="https://upload.wikimedia.org/wikipedia/en/2/20/BISE_Rawalpindi_logo.png"
-                alt="BISE Rawalpindi"
-                className="w-full h-full object-contain"
-              />
+              {/* BISE Rawalpindi Logo */}
+              <div className="group w-24 h-20 bg-white rounded-lg flex items-center justify-center border border-white/10 hover:border-[#ffcc00]/60 hover:shadow-[0_0_20px_rgba(255,204,0,0.15)] transition-all duration-300 p-2 shadow-xl">
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/en/2/20/BISE_Rawalpindi_logo.png"
+                  alt="BISE Rawalpindi"
+                  className="w-full h-full object-contain"
+                />
+              </div>
             </div>
           </div>
         </div>
