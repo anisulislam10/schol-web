@@ -47,8 +47,8 @@ export default function Footer() {
     <footer className="bg-[#002d56] text-white pt-24 pb-12 overflow-hidden border-t border-white/5">
       <div className="max-w-[1400px] mx-auto px-6">
         <div className="grid grid-cols-2 lg:grid-cols-12 gap-y-16 gap-x-8 lg:gap-16 pb-20">
-          {/* Logo and Brand - Take one column on mobile for 2x2 pairing */}
-          <div className="col-span-1 lg:col-span-4">
+          {/* Logo and Brand - Full width on mobile/sm, then col-span-4 on lg */}
+          <div className="col-span-2 lg:col-span-4">
             <Link href="/" className="flex items-center gap-4 mb-8 group">
               <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center p-3 shadow-2xl group-hover:rotate-12 transition-transform">
                 <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" />
