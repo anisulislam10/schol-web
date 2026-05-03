@@ -46,9 +46,9 @@ export default function Footer() {
   return (
     <footer className="bg-[#002d56] text-white pt-24 pb-12 overflow-hidden border-t border-white/5">
       <div className="max-w-[1400px] mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 pb-20">
-          {/* Logo and Brand */}
-          <div className="lg:col-span-4">
+        <div className="grid grid-cols-2 lg:grid-cols-12 gap-y-16 gap-x-8 lg:gap-16 pb-20">
+          {/* Logo and Brand - Take one column on mobile for 2x2 pairing */}
+          <div className="col-span-1 lg:col-span-4">
             <Link href="/" className="flex items-center gap-4 mb-8 group">
               <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center p-3 shadow-2xl group-hover:rotate-12 transition-transform">
                 <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" />
@@ -74,45 +74,31 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Quick Links Grid */}
-          <div className="lg:col-span-6 grid grid-cols-2 md:grid-cols-3 gap-y-12 gap-x-8">
-            {footerLinks.map((group) => (
-              <div key={group.title}>
-                <h4 className="text-[#ffcc00] font-black text-xs uppercase tracking-[0.2em] mb-6">{group.title}</h4>
-                <ul className="space-y-3">
-                  {group.links.map((link) => (
-                    <li key={link.name}>
-                      <Link href={link.href} className="text-white/60 hover:text-white text-[13px] font-medium transition-colors">
-                        {link.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-
-          {/* Accreditations */}
-          <div className="lg:col-span-2 flex flex-col items-center lg:items-end gap-5">
-            <h4 className="text-[#ffcc00] font-black text-[10px] uppercase tracking-[0.3em] opacity-80 self-center lg:self-end">Accreditations</h4>
-
-            <div className="flex flex-row gap-4 justify-center">
-              {/* HEC Logo */}
-              <div className="group w-24 h-20 bg-white rounded-lg flex items-center justify-center border border-white/10 hover:border-[#ffcc00]/60 hover:shadow-[0_0_20px_rgba(255,204,0,0.15)] transition-all duration-300 p-2 shadow-xl">
-              <img
-                src="https://www.hec.gov.pk/SiteAssets/higher-education-commission-pakistan-logo.png"
-                alt="HEC - Higher Education Commission Pakistan"
-                className="w-full h-full object-contain"
-              />
+          {/* Quick Links - Each group takes 1 column on mobile (so 2 groups per row) */}
+          {footerLinks.map((group) => (
+            <div key={group.title} className="col-span-1 lg:col-span-2">
+              <h4 className="text-[#ffcc00] font-black text-xs uppercase tracking-[0.2em] mb-6">{group.title}</h4>
+              <ul className="space-y-3">
+                {group.links.map((link) => (
+                  <li key={link.name}>
+                    <Link href={link.href} className="text-white/60 hover:text-white text-[13px] font-medium transition-colors">
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
+          ))}
 
-              {/* BISE Rawalpindi Logo */}
+          {/* Accreditations - Full width on mobile/sm, col-span-2 on lg */}
+          <div className="col-span-2 lg:col-span-2 flex flex-col items-center lg:items-end gap-5 lg:mt-0 mt-8">
+            <h4 className="text-[#ffcc00] font-black text-[10px] uppercase tracking-[0.3em] opacity-80 self-center lg:self-end">Accreditations</h4>
+            <div className="flex flex-row gap-4 justify-center">
               <div className="group w-24 h-20 bg-white rounded-lg flex items-center justify-center border border-white/10 hover:border-[#ffcc00]/60 hover:shadow-[0_0_20px_rgba(255,204,0,0.15)] transition-all duration-300 p-2 shadow-xl">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/en/2/20/BISE_Rawalpindi_logo.png"
-                  alt="BISE Rawalpindi"
-                  className="w-full h-full object-contain"
-                />
+                <img src="https://www.hec.gov.pk/SiteAssets/higher-education-commission-pakistan-logo.png" alt="HEC" className="w-full h-full object-contain" />
+              </div>
+              <div className="group w-24 h-20 bg-white rounded-lg flex items-center justify-center border border-white/10 hover:border-[#ffcc00]/60 hover:shadow-[0_0_20px_rgba(255,204,0,0.15)] transition-all duration-300 p-2 shadow-xl">
+                <img src="https://upload.wikimedia.org/wikipedia/en/2/20/BISE_Rawalpindi_logo.png" alt="BISE" className="w-full h-full object-contain" />
               </div>
             </div>
           </div>
