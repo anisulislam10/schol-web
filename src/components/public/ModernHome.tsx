@@ -203,7 +203,7 @@ export default function HomePage({ data }: { data: any }) {
             {[
               { 
                 name: 'Sana Ahmed', 
-                img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400', 
+                img: 'https://t3.ftcdn.net/jpg/04/98/91/96/360_F_498919631_Me4XD0pVj0tX109wnyH7FIo6FHTb5J0E.jpg', 
                 role: 'Senior Software Engineer', 
                 quote: 'The CS department at GGC gave me the foundation to compete globally. Today, I am leading engineering teams in a top tech firm.' 
               },
