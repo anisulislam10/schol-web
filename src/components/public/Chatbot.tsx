@@ -185,8 +185,10 @@ export default function Chatbot({ settings }: { settings?: any }) {
   }
 
   return (
-
-    <div className={`fixed right-6 z-[9999] transition-all duration-300 ease-in-out ${isMinimized ? 'bottom-6 translate-y-[calc(100%-60px)]' : 'bottom-6 translate-y-0'} w-[calc(100%-48px)] sm:w-[350px] bg-white rounded-t-xl rounded-bl-xl shadow-2xl overflow-hidden border border-slate-200 flex flex-col`} style={{ height: '500px', maxHeight: '80vh' }}>
+    <div
+      className={`fixed right-0 sm:right-6 z-[9999] transition-all duration-300 ease-in-out ${isMinimized ? 'bottom-0 sm:bottom-6 translate-y-[calc(100%-60px)]' : 'bottom-0 sm:bottom-6 translate-y-0'} w-full sm:w-[350px] bg-white rounded-t-xl sm:rounded-bl-xl shadow-2xl overflow-hidden border border-slate-200 flex flex-col`}
+      style={{ height: '500px', maxHeight: 'calc(100dvh - 80px)' }}
+    >
       {/* Header */}
       <div className="bg-[#002d56] text-white p-4 flex justify-between items-center cursor-pointer" onClick={() => setIsMinimized(!isMinimized)}>
         <div className="flex items-center gap-3">
